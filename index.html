@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuroAdventure - Núcleos da Base</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .neural-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.1;
+        }
+
+        .neuron {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        .game-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 90%;
+            margin: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: slideIn 0.8s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .game-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .game-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .game-subtitle {
+            font-size: 1.1rem;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .level-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 16px;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 16px rgba(240, 147, 251, 0.3);
+        }
+
+        .level-badge {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .score-display {
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .progress-bar {
+            background: rgba(255, 255, 255, 0.3);
+            height: 8px;
+            border-radius: 4px;
+            margin-top: 1rem;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4facfe, #00f2fe);
+            width: 0%;
+            transition: width 0.6s ease;
+            border-radius: 4px;
+        }
+
+        .question-container {
+            background: #f8fafc;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .question-number {
+            color: #667eea;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .question-text {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #2d3748;
+            line-height: 1.4;
+            margin-bottom: 1.5rem;
+        }
+
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .option-button {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 1.2rem 1.5rem;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #4a5568;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .option-button:hover {
+            border-color: #667eea;
+            background: #f7fafc;
+            transform: translateX(8px);
+            box-shadow: 0 8px 16px rgba(102, 126, 234, 0.15);
+        }
+
+        .option-button.correct {
+            background: linear-gradient(135deg, #48bb78, #38a169);
+            border-color: #38a169;
+            color: white;
+            transform: scale(1.02);
+        }
+
+        .option-button.incorrect {
+            background: linear-gradient(135deg, #f56565, #e53e3e);
+            border-color: #e53e3e;
+            color: white;
+            animation: shake 0.5s ease;
+        }
+
+        .option-button.disabled {
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-8px); }
+            75% { transform: translateX(8px); }
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: #e2e8f0;
+            color: #4a5568;
+        }
+
+        .btn-secondary:hover {
+            background: #cbd5e0;
+            transform: translateY(-1px);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .explanation-panel {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border-left: 4px solid #f6ad55;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .explanation-panel.show {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .explanation-title {
+            font-weight: 700;
+            color: #c05621;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .explanation-text {
+            color: #744210;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        .completion-screen {
+            text-align: center;
+            padding: 2rem;
+            display: none;
+        }
+
+        .completion-screen.show {
+            display: block;
+            animation: slideIn 0.8s ease;
+        }
+
+        .completion-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #48bb78;
+            margin-bottom: 1rem;
+        }
+
+        .score-summary {
+            background: linear-gradient(135deg, #48bb78, #38a169);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 16px;
+            margin: 1.5rem 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .brain-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        @media (max-width: 768px) {
+            .game-container {
+                padding: 1.5rem;
+                margin: 10px;
+            }
+
+            .game-title {
+                font-size: 2rem;
+            }
+
+            .question-text {
+                font-size: 1.2rem;
+            }
+
+            .level-info {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .controls {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .controls .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="neural-background" id="neuralBg"></div>
+    
+    <div class="game-container">
+        <header class="game-header">
+            <h1 class="game-title">NeuroAdventure</h1>
+            <p class="game-subtitle">Explorando os Mistérios dos Núcleos da Base</p>
+        </header>
+
+        <div class="level-info">
+            <div class="level-badge">
+                <span>🧠</span> Nível 1: Introdução aos Núcleos da Base
+            </div>
+            <div class="score-display">
+                <span>⭐</span>
+                <span id="scoreValue">0</span> pontos
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+        </div>
+
+        <div id="questionScreen">
+            <div class="question-container">
+                <div class="question-number" id="questionNumber">Pergunta 1 de 10</div>
+                <div class="question-text" id="questionText"></div>
+                <div class="options-container" id="optionsContainer"></div>
+            </div>
+
+            <div class="explanation-panel" id="explanationPanel">
+                <div class="explanation-title">
+                    <span>💡</span> Explicação
+                </div>
+                <div class="explanation-text" id="explanationText"></div>
+            </div>
+
+            <div class="controls">
+                <button class="btn btn-secondary" id="showExplanationBtn">
+                    💡 Ver Explicação
+                </button>
+                <button class="btn btn-primary" id="nextQuestionBtn" disabled>
+                    Próxima Pergunta →
+                </button>
+            </div>
+        </div>
+
+        <div class="completion-screen" id="completionScreen">
+            <div class="brain-icon">🧠</div>
+            <h2 class="completion-title">Nível Concluído!</h2>
+            <div class="score-summary" id="finalScore"></div>
+            <p style="color: #666; margin-bottom: 2rem;">
+                Parabéns! Você completou a introdução aos núcleos da base.
+            </p>
+            <button class="btn btn-primary" onclick="restartGame()">
+                🔄 Jogar Novamente
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Game data
+        const gameData = [
+            {
+                question: "O que são os núcleos da base?",
+                options: ["a) Um tipo de neurônio", "b) Um grupo de núcleos subcorticais", "c) Uma parte da medula espinhal"],
+                answer: "b",
+                explanation: "Os núcleos da base são uma coleção de estruturas subcorticais localizadas na base do prosencéfalo, envolvidas no controle motor e outras funções."
+            },
+            {
+                question: "Onde estão localizados os núcleos da base?",
+                options: ["a) No cerebelo", "b) Na base do prosencéfalo", "c) No tronco encefálico"],
+                answer: "b",
+                explanation: "Eles estão localizados profundamente dentro dos hemisférios cerebrais, na base do prosencéfalo."
+            },
+            {
+                question: "Qual é a função primária dos núcleos da base?",
+                options: ["a) Processamento sensorial", "b) Controle motor", "c) Armazenamento de memória"],
+                answer: "b",
+                explanation: "Embora tenham várias funções, seu papel principal é na regulação dos movimentos voluntários."
+            },
+            {
+                question: "Os núcleos da base fazem parte do sistema nervoso central?",
+                options: ["a) Sim, fazem parte do SNC", "b) Não, fazem parte do SNP", "c) Não fazem parte do sistema nervoso"],
+                answer: "a",
+                explanation: "Os núcleos da base estão no cérebro, sendo, portanto, parte do sistema nervoso central."
+            },
+            {
+                question: "Os núcleos da base controlam diretamente os movimentos musculares?",
+                options: ["a) Sim, enviam sinais diretamente aos músculos", "b) Não, modulam a atividade motora indiretamente", "c) Apenas em certas condições"],
+                answer: "b",
+                explanation: "Eles influenciam a atividade motora por meio de conexões com o córtex motor, mas não inervam diretamente os músculos."
+            },
+            {
+                question: "Além do controle motor, em que outras funções os núcleos da base estão envolvidos?",
+                options: ["a) Visão e audição", "b) Cognição e emoção", "c) Digestão e respiração"],
+                answer: "b",
+                explanation: "Eles desempenham papéis em processos cognitivos, como aprendizado, e na regulação emocional."
+            },
+            {
+                question: "Os núcleos da base são uma estrutura única?",
+                options: ["a) Sim, é um grande núcleo", "b) Não, é um grupo de estruturas interconectadas", "c) Varia entre indivíduos"],
+                answer: "b",
+                explanation: "Os núcleos da base consistem em vários núcleos distintos, mas interconectados."
+            },
+            {
+                question: "Qual é outro termo às vezes usado para os núcleos da base?",
+                options: ["a) Gânglios basais", "b) Córtex cerebral", "c) Sistema límbico"],
+                answer: "a",
+                explanation: "O termo 'gânglios basais' é comumente usado, embora 'núcleos da base' seja anatomicamente mais correto."
+            },
+            {
+                question: "Os núcleos da base desempenham um papel na emoção?",
+                options: ["a) Sim, por meio de conexões com o sistema límbico", "b) Não, são apenas estruturas motoras", "c) Apenas em condições patológicas"],
+                answer: "a",
+                explanation: "Os núcleos da base, especialmente o estriado ventral, estão envolvidos no processamento de recompensas e emoções."
+            },
+            {
+                question: "Por que os núcleos da base são importantes para entender distúrbios neurológicos?",
+                options: ["a) Porque são afetados em muitos distúrbios", "b) Porque causam todas as doenças neurológicas", "c) Porque são fáceis de estudar"],
+                answer: "a",
+                explanation: "Distúrbios como Parkinson e Huntington envolvem disfunções nos núcleos da base, tornando-os cruciais para entender essas condições."
+            }
+        ];
+
+        // Game state
+        let currentQuestion = 0;
+        let score = 0;
+        let answeredCorrectly = false;
+        let explanationViewed = false;
+
+        // DOM elements
+        const questionNumberEl = document.getElementById('questionNumber');
+        const questionTextEl = document.getElementById('questionText');
+        const optionsContainerEl = document.getElementById('optionsContainer');
+        const explanationPanelEl = document.getElementById('explanationPanel');
+        const explanationTextEl = document.getElementById('explanationText');
+        const showExplanationBtn = document.getElementById('showExplanationBtn');
+        const nextQuestionBtn = document.getElementById('nextQuestionBtn');
+        const scoreValueEl = document.getElementById('scoreValue');
+        const progressFillEl = document.getElementById('progressFill');
+        const questionScreenEl = document.getElementById('questionScreen');
+        const completionScreenEl = document.getElementById('completionScreen');
+        const finalScoreEl = document.getElementById('finalScore');
+
+        // Initialize neural background
+        function createNeuralBackground() {
+            const bg = document.getElementById('neuralBg');
+            for (let i = 0; i < 50; i++) {
+                const neuron = document.createElement('div');
+                neuron.className = 'neuron';
+                neuron.style.left = Math.random() * 100 + '%';
+                neuron.style.top = Math.random() * 100 + '%';
+                neuron.style.animationDelay = Math.random() * 6 + 's';
+                bg.appendChild(neuron);
+            }
+        }
+
+        // Load current question
+        function loadQuestion() {
+            const question = gameData[currentQuestion];
+            questionNumberEl.textContent = `Pergunta ${currentQuestion + 1} de ${gameData.length}`;
+            questionTextEl.textContent = question.question;
+            explanationTextEl.textContent = question.explanation;
+            
+            // Clear previous options
+            optionsContainerEl.innerHTML = '';
+            
+            // Create option buttons
+            question.options.forEach((option, index) => {
+                const button = document.createElement('button');
+                button.className = 'option-button';
+                button.textContent = option;
+                button.onclick = () => selectOption(String.fromCharCode(97 + index), button);
+                optionsContainerEl.appendChild(button);
+            });
+
+            // Reset UI state
+            explanationPanelEl.classList.remove('show');
+            showExplanationBtn.disabled = false;
+            nextQuestionBtn.disabled = true;
+            answeredCorrectly = false;
+            explanationViewed = false;
+
+            // Update progress
+            const progress = ((currentQuestion) / gameData.length) * 100;
+            progressFillEl.style.width = progress + '%';
+        }
+
+        // Handle option selection
+        function selectOption(selectedAnswer, buttonEl) {
+            const question = gameData[currentQuestion];
+            const allButtons = document.querySelectorAll('.option-button');
+            
+            // Disable all buttons
+            allButtons.forEach(btn => btn.classList.add('disabled'));
+            
+            // Check if answer is correct
+            if (selectedAnswer === question.answer) {
+                buttonEl.classList.add('correct');
+                answeredCorrectly = true;
+                if (!explanationViewed) {
+                    score += 10; // Only award points if explanation wasn't viewed
+                    updateScore();
+                }
+            } else {
+                buttonEl.classList.add('incorrect');
+                // Highlight correct answer
+                const correctIndex = question.answer.charCodeAt(0) - 97;
+                allButtons[correctIndex].classList.add('correct');
+            }
+            
+            nextQuestionBtn.disabled = false;
+            showExplanationBtn.disabled = true;
+        }
+
+        // Show explanation
+        function showExplanation() {
+            explanationPanelEl.classList.add('show');
+            explanationViewed = true;
+            showExplanationBtn.disabled = true;
+        }
+
+        // Move to next question
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < gameData.length) {
+                loadQuestion();
+            } else {
+                showCompletionScreen();
+            }
+        }
+
+        // Update score display
+        function updateScore() {
+            scoreValueEl.textContent = score;
+        }
+
+        // Show completion screen
+        function showCompletionScreen() {
+            questionScreenEl.style.display = 'none';
+            completionScreenEl.classList.add('show');
+            
+            const maxScore = gameData.length * 10;
+            const percentage = Math.round((score / maxScore) * 100);
+            
+            finalScoreEl.innerHTML = `
+                <div>Pontuação Final: ${score}/${maxScore} pontos</div>
+                <div>Precisão: ${percentage}%</div>
+            `;
+            
+            // Update progress to 100%
+            progressFillEl.style.width = '100%';
+        }
+
+        // Restart game
+        function restartGame() {
+            currentQuestion = 0;
+            score = 0;
+            answeredCorrectly = false;
+            explanationViewed = false;
+            
+            questionScreenEl.style.display = 'block';
+            completionScreenEl.classList.remove('show');
+            
+            updateScore();
+            loadQuestion();
+        }
+
+        // Event listeners
+        showExplanationBtn.addEventListener('click', showExplanation);
+        nextQuestionBtn.addEventListener('click', nextQuestion);
+
+        // Initialize game
+        createNeuralBackground();
+        loadQuestion();
+        updateScore();
+    </script>
+</body>
+</html>
