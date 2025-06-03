@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NeuroAdventure - Neuroanatomia Interativa</title>
+    <meta name="description" content="Jogo educativo interativo para aprender neuroanatomia">
+    <meta name="generator" content="NeuroAdventure Generator - 2025-06-02 22:20:03">
     <style>
         * {
             margin: 0;
@@ -52,7 +54,7 @@
             border-radius: 24px;
             padding: 2rem;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            max-width: 800px;
+            max-width: 900px;
             width: 90%;
             margin: 20px;
             border: 1px solid rgba(255, 255, 255, 0.2);
@@ -95,7 +97,7 @@
 
         .level-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 1rem;
             margin-bottom: 2rem;
         }
@@ -403,6 +405,18 @@
             50% { transform: scale(1.1); }
         }
 
+        .generator-info {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 0.5rem;
+            border-radius: 8px;
+            font-size: 0.7rem;
+            opacity: 0.5;
+        }
+
         @media (max-width: 768px) {
             .game-container {
                 padding: 1.5rem;
@@ -434,6 +448,10 @@
 
             .level-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .generator-info {
+                display: none;
             }
         }
     </style>
@@ -520,539 +538,13 @@
         </div>
     </div>
 
+    <div class="generator-info">
+        Gerado em 2025-06-02 22:20:03
+    </div>
+
     <script>
         // Dados do jogo - gerado dinamicamente
         const GAME_DATA = {
-  "Componentes dos Núcleos da Base_1": {
-    "tema": "Componentes dos Núcleos da Base",
-    "level": 1,
-    "questions": [
-      {
-        "question": "O que são os núcleos da base?",
-        "options": [
-          "a) Um tipo de neurônio",
-          "b) Um grupo de estruturas subcorticais",
-          "c) Uma parte do cerebelo"
-        ],
-        "answer": "b",
-        "explanation": "Os núcleos da base são um conjunto de estruturas subcorticais localizadas na base do prosencéfalo, essenciais para funções motoras, cognitivas e emocionais."
-      },
-      {
-        "question": "Quais são os principais componentes dos núcleos da base?",
-        "options": [
-          "a) Hipocampo e amígdala",
-          "b) Corpo estriado, globo pálido, substância negra, núcleo subtalâmico",
-          "c) Tálamo e hipotálamo"
-        ],
-        "answer": "b",
-        "explanation": "Os componentes principais são o corpo estriado, globo pálido, substância negra e núcleo subtalâmico."
-      },
-      {
-        "question": "Onde estão localizados os núcleos da base?",
-        "options": [
-          "a) No tronco encefálico",
-          "b) Na base do prosencéfalo",
-          "c) Na superfície do córtex"
-        ],
-        "answer": "b",
-        "explanation": "Eles estão situados na base do prosencéfalo, abaixo do neocórtex."
-      },
-      {
-        "question": "Qual estrutura é a principal porta de entrada dos núcleos da base?",
-        "options": [
-          "a) Globo pálido",
-          "b) Corpo estriado",
-          "c) Núcleo subtalâmico"
-        ],
-        "answer": "b",
-        "explanation": "O corpo estriado é a principal porta de entrada, recebendo sinais corticais."
-      },
-      {
-        "question": "O globo pálido é um componente dos núcleos da base?",
-        "options": [
-          "a) Sim",
-          "b) Não",
-          "c) Apenas em algumas espécies"
-        ],
-        "answer": "a",
-        "explanation": "Sim, o globo pálido é um componente essencial, dividido em segmentos interno e externo."
-      },
-      {
-        "question": "Qual é a localização geral da substância negra?",
-        "options": [
-          "a) Mesencéfalo",
-          "b) Diencéfalo",
-          "c) Telencéfalo"
-        ],
-        "answer": "a",
-        "explanation": "A substância negra está localizada no mesencéfalo."
-      },
-      {
-        "question": "O núcleo subtalâmico está envolvido em qual função?",
-        "options": [
-          "a) Processamento auditivo",
-          "b) Regulação do globo pálido",
-          "c) Controle da respiração"
-        ],
-        "answer": "b",
-        "explanation": "O núcleo subtalâmico regula a atividade do globo pálido e da substância negra."
-      },
-      {
-        "question": "Os núcleos da base estão conectados ao córtex cerebral?",
-        "options": [
-          "a) Sim",
-          "b) Não",
-          "c) Apenas em condições patológicas"
-        ],
-        "answer": "a",
-        "explanation": "Sim, eles formam circuitos com o córtex cerebral, como o circuito córtico-estriatal-talâmico."
-      },
-      {
-        "question": "Qual é a importância clínica dos núcleos da base?",
-        "options": [
-          "a) Não têm relevância",
-          "b) Estão associados a distúrbios motores",
-          "c) Controlam apenas funções sensoriais"
-        ],
-        "answer": "b",
-        "explanation": "Disfunções nos núcleos da base estão ligadas a doenças como Parkinson e Huntington."
-      },
-      {
-        "question": "O corpo estriado é composto por quantas estruturas principais?",
-        "options": [
-          "a) Uma",
-          "b) Duas",
-          "c) Três"
-        ],
-        "answer": "b",
-        "explanation": "O corpo estriado é composto por duas estruturas: núcleo caudado e putâmen."
-      }
-    ]
-  },
-  "Componentes dos Núcleos da Base_2": {
-    "tema": "Componentes dos Núcleos da Base",
-    "level": 2,
-    "questions": [
-      {
-        "question": "Qual é a forma do núcleo caudado?",
-        "options": [
-          "a) Esférica",
-          "b) Em forma de C",
-          "c) Cilíndrica"
-        ],
-        "answer": "b",
-        "explanation": "O núcleo caudado tem uma estrutura em forma de C, com cabeça, corpo e cauda."
-      },
-      {
-        "question": "Onde está localizado o putâmen em relação ao globo pálido?",
-        "options": [
-          "a) Lateral",
-          "b) Medial",
-          "c) Superior"
-        ],
-        "answer": "a",
-        "explanation": "O putâmen está localizado lateralmente ao globo pálido, formando os núcleos lentiformes."
-      },
-      {
-        "question": "Quais são as duas partes do globo pálido?",
-        "options": [
-          "a) Anterior e posterior",
-          "b) Externo e interno",
-          "c) Dorsal e ventral"
-        ],
-        "answer": "b",
-        "explanation": "O globo pálido é dividido em segmento externo (GPe) e interno (GPi)."
-      },
-      {
-        "question": "Qual é a função principal do putâmen?",
-        "options": [
-          "a) Controle motor",
-          "b) Processamento visual",
-          "c) Regulação da temperatura"
-        ],
-        "answer": "a",
-        "explanation": "O putâmen está envolvido no controle motor, recebendo entradas do córtex motor."
-      },
-      {
-        "question": "Onde está situado o núcleo subtalâmico?",
-        "options": [
-          "a) Acima do tálamo",
-          "b) Ventralmente ao tálamo",
-          "c) No cerebelo"
-        ],
-        "answer": "b",
-        "explanation": "O núcleo subtalâmico é uma estrutura lenticular localizada ventralmente ao tálamo."
-      },
-      {
-        "question": "Qual parte da substância negra projeta dopamina para o estriado?",
-        "options": [
-          "a) Pars reticulata",
-          "b) Pars compacta",
-          "c) Ambas"
-        ],
-        "answer": "b",
-        "explanation": "A pars compacta (SNpc) contém neurônios dopaminérgicos que projetam para o estriado."
-      },
-      {
-        "question": "Qual é o papel do segmento interno do globo pálido (GPi)?",
-        "options": [
-          "a) Receber sinais corticais",
-          "b) Principal núcleo de saída",
-          "c) Produzir GABA"
-        ],
-        "answer": "b",
-        "explanation": "O GPi é o principal núcleo de saída, projetando-se para o tálamo."
-      },
-      {
-        "question": "O núcleo caudado está próximo a qual estrutura cerebral?",
-        "options": [
-          "a) Ventrículos laterais",
-          "b) Ponte",
-          "c) Medula espinhal"
-        ],
-        "answer": "a",
-        "explanation": "O núcleo caudado está localizado lateralmente aos ventrículos laterais."
-      },
-      {
-        "question": "Qual é o volume aproximado do corpo estriado?",
-        "options": [
-          "a) 5 cm³",
-          "b) 10 cm³",
-          "c) 15 cm³"
-        ],
-        "answer": "b",
-        "explanation": "O corpo estriado tem um volume aproximado de 10 cm³."
-      },
-      {
-        "question": "O que os núcleos lentiformes incluem?",
-        "options": [
-          "a) Núcleo caudado e substância negra",
-          "b) Putâmen e globo pálido",
-          "c) Tálamo e STN"
-        ],
-        "answer": "b",
-        "explanation": "Os núcleos lentiformes são formados pelo putâmen e globo pálido."
-      }
-    ]
-  },
-  "Componentes dos Núcleos da Base_3": {
-    "tema": "Componentes dos Núcleos da Base",
-    "level": 3,
-    "questions": [
-      {
-        "question": "Qual é o papel da via direta nos núcleos da base?",
-        "options": [
-          "a) Inibir o movimento",
-          "b) Facilitar o movimento",
-          "c) Regular a emoção"
-        ],
-        "answer": "b",
-        "explanation": "A via direta facilita o movimento ao inibir o GPi/SNpr, desinibindo o tálamo."
-      },
-      {
-        "question": "O que a via indireta faz nos núcleos da base?",
-        "options": [
-          "a) Facilita o movimento",
-          "b) Inibe o movimento",
-          "c) Modula a visão"
-        ],
-        "answer": "b",
-        "explanation": "A via indireta inibe o movimento ao aumentar a inibição sobre o tálamo via STN e GPi/SNpr."
-      },
-      {
-        "question": "Qual estrutura modula o estriado com dopamina?",
-        "options": [
-          "a) Globo pálido",
-          "b) Substância negra pars compacta",
-          "c) Núcleo subtalâmico"
-        ],
-        "answer": "b",
-        "explanation": "A SNpc projeta dopamina para o estriado, modulando as vias direta e indireta."
-      },
-      {
-        "question": "O que é a via hiperdireta?",
-        "options": [
-          "a) Conexão do córtex ao STN",
-          "b) Via que evita o tálamo",
-          "c) Conexão do GPe ao estriado"
-        ],
-        "answer": "a",
-        "explanation": "A via hiperdireta conecta diretamente o córtex ao núcleo subtalâmico para modulação rápida."
-      },
-      {
-        "question": "Quais núcleos são inibidos pelo estriado na via direta?",
-        "options": [
-          "a) GPe e STN",
-          "b) GPi e SNpr",
-          "c) Tálamo e córtex"
-        ],
-        "answer": "b",
-        "explanation": "Na via direta, o estriado inibe o GPi e SNpr, facilitando o movimento."
-      },
-      {
-        "question": "Qual estrutura excita o GPi/SNpr na via indireta?",
-        "options": [
-          "a) Núcleo subtalâmico",
-          "b) Núcleo caudado",
-          "c) GPe"
-        ],
-        "answer": "a",
-        "explanation": "O núcleo subtalâmico excita o GPi/SNpr com glutamato na via indireta."
-      },
-      {
-        "question": "Para onde o GPi projeta suas saídas?",
-        "options": [
-          "a) Córtex motor",
-          "b) Tálamo",
-          "c) Cerebelo"
-        ],
-        "answer": "b",
-        "explanation": "O GPi projeta-se para os núcleos ventrais anterior e lateral do tálamo."
-      },
-      {
-        "question": "Qual é a função da SNpr além do controle motor?",
-        "options": [
-          "a) Processamento emocional",
-          "b) Movimentos oculares",
-          "c) Integração sensorial"
-        ],
-        "answer": "b",
-        "explanation": "A SNpr está envolvida no controle de movimentos oculares via projeções ao colículo superior."
-      },
-      {
-        "question": "Quais sinais o estriado integra?",
-        "options": [
-          "a) Sinais corticais",
-          "b) Sinais do tronco encefálico",
-          "c) Sinais periféricos"
-        ],
-        "answer": "a",
-        "explanation": "O estriado integra projeções glutamatérgicas de todas as regiões corticais."
-      },
-      {
-        "question": "Como os circuitos dos núcleos da base são organizados?",
-        "options": [
-          "a) Em série",
-          "b) Em vias paralelas",
-          "c) Aleatoriamente"
-        ],
-        "answer": "b",
-        "explanation": "Os circuitos são organizados em vias paralelas para processar informações motoras, cognitivas e límbicas."
-      }
-    ]
-  },
-  "Componentes dos Núcleos da Base_4": {
-    "tema": "Componentes dos Núcleos da Base",
-    "level": 4,
-    "questions": [
-      {
-        "question": "Qual é o principal tipo de neurônio no estriado?",
-        "options": [
-          "a) Neurônios piramidais",
-          "b) Neurônios espinhosos médios",
-          "c) Neurônios granulares"
-        ],
-        "answer": "b",
-        "explanation": "Os neurônios espinhosos médios, GABAérgicos, compõem cerca de 95% do estriado."
-      },
-      {
-        "question": "Qual neurotransmissor o núcleo subtalâmico libera?",
-        "options": [
-          "a) Dopamina",
-          "b) Glutamato",
-          "c) GABA"
-        ],
-        "answer": "b",
-        "explanation": "O núcleo subtalâmico usa glutamato, um neurotransmissor excitatório, para projetar ao GPi/SNpr."
-      },
-      {
-        "question": "Qual é o neurotransmissor do globo pálido?",
-        "options": [
-          "a) GABA",
-          "b) Glutamato",
-          "c) Acetilcolina"
-        ],
-        "answer": "a",
-        "explanation": "O globo pálido utiliza GABA como neurotransmissor inibitório."
-      },
-      {
-        "question": "Quais receptores de dopamina estão no estriado?",
-        "options": [
-          "a) D1 e D2",
-          "b) D3 e D4",
-          "c) Apenas D5"
-        ],
-        "answer": "a",
-        "explanation": "Os receptores D1 e D2 modulam as vias direta e indireta no estriado."
-      },
-      {
-        "question": "Que tipo de neurônios a SNpc contém?",
-        "options": [
-          "a) GABAérgicos",
-          "b) Dopaminérgicos",
-          "c) Glutamatérgicos"
-        ],
-        "answer": "b",
-        "explanation": "A pars compacta da substância negra contém neurônios dopaminérgicos pigmentados."
-      },
-      {
-        "question": "Qual é o papel da acetilcolina no estriado?",
-        "options": [
-          "a) Inibir o GPi",
-          "b) Modular neurônios espinhosos médios",
-          "c) Excitar o STN"
-        ],
-        "answer": "b",
-        "explanation": "A acetilcolina, liberada por interneurônios, modula a atividade dos neurônios espinhosos médios."
-      },
-      {
-        "question": "O que diferencia os estriosomas da matriz no estriado?",
-        "options": [
-          "a) Funções distintas",
-          "b) Tipos de neurotransmissores",
-          "c) Localização"
-        ],
-        "answer": "a",
-        "explanation": "Estriosomas e matriz têm funções e conexões diferentes no estriado."
-      },
-      {
-        "question": "Qual é a característica dos neurônios do STN?",
-        "options": [
-          "a) Baixa taxa de disparo",
-          "b) Alta taxa de disparo espontâneo",
-          "c) Apenas inibitórios"
-        ],
-        "answer": "b",
-        "explanation": "Os neurônios do núcleo subtalâmico têm alta taxa de disparo espontâneo."
-      },
-      {
-        "question": "Quais interneurônios estão presentes no estriado?",
-        "options": [
-          "a) Apenas colinérgicos",
-          "b) Colinérgicos e GABAérgicos",
-          "c) Apenas glutamatérgicos"
-        ],
-        "answer": "b",
-        "explanation": "O estriado contém interneurônios colinérgicos e GABAérgicos, como os parvalbumina-positivos."
-      },
-      {
-        "question": "Qual neurotransmissor o córtex usa para projetar ao estriado?",
-        "options": [
-          "a) Dopamina",
-          "b) Glutamato",
-          "c) GABA"
-        ],
-        "answer": "b",
-        "explanation": "O córtex projeta glutamato excitatório para o estriado."
-      }
-    ]
-  },
-  "Componentes dos Núcleos da Base_5": {
-    "tema": "Componentes dos Núcleos da Base",
-    "level": 5,
-    "questions": [
-      {
-        "question": "Qual componente é afetado na doença de Parkinson?",
-        "options": [
-          "a) Substância negra pars compacta",
-          "b) Globo pálido externo",
-          "c) Núcleo caudado"
-        ],
-        "answer": "a",
-        "explanation": "A degeneração dos neurônios dopaminérgicos da SNpc é a principal característica da doença de Parkinson."
-      },
-      {
-        "question": "O que causa a coreia na doença de Huntington?",
-        "options": [
-          "a) Perda de neurônios GABAérgicos no estriado",
-          "b) Excesso de dopamina",
-          "c) Lesão no STN"
-        ],
-        "answer": "a",
-        "explanation": "A morte de neurônios GABAérgicos no estriado reduz a inibição, levando a movimentos involuntários."
-      },
-      {
-        "question": "Qual é a causa do hemibalismo?",
-        "options": [
-          "a) Lesão no núcleo subtalâmico",
-          "b) Degeneração do GPi",
-          "c) Mutação genética"
-        ],
-        "answer": "a",
-        "explanation": "Lesões no STN diminuem a excitação do GPi/SNpr, causando movimentos hipercinéticos."
-      },
-      {
-        "question": "Qual estrutura está associada à distonia?",
-        "options": [
-          "a) Globo pálido interno",
-          "b) Substância negra",
-          "c) Tálamo"
-        ],
-        "answer": "a",
-        "explanation": "Alterações no GPi podem levar a contrações musculares anormais na distonia."
-      },
-      {
-        "question": "O que está relacionado aos tiques na síndrome de Tourette?",
-        "options": [
-          "a) Disfunção no estriado",
-          "b) Lesão no GPe",
-          "c) Degeneração do STN"
-        ],
-        "answer": "a",
-        "explanation": "Disfunções no estriado, incluindo interneurônios GABAérgicos, contribuem para os tiques."
-      },
-      {
-        "question": "Qual é o alvo da estimulação cerebral profunda em Parkinson?",
-        "options": [
-          "a) STN ou GPi",
-          "b) Núcleo caudado",
-          "c) SNpr"
-        ],
-        "answer": "a",
-        "explanation": "A DBS no STN ou GPi modula circuitos anormais, aliviando sintomas motores."
-      },
-      {
-        "question": "Qual gene está mutado na doença de Huntington?",
-        "options": [
-          "a) PARK2",
-          "b) HTT",
-          "c) LRRK2"
-        ],
-        "answer": "b",
-        "explanation": "A mutação no gene HTT causa a doença de Huntington."
-      },
-      {
-        "question": "Qual sintoma motor caracteriza a doença de Huntington?",
-        "options": [
-          "a) Rigidez",
-          "b) Coreia",
-          "c) Tremor"
-        ],
-        "answer": "b",
-        "explanation": "Coreia, movimentos involuntários, é o principal sintoma motor da doença de Huntington."
-      },
-      {
-        "question": "O que a perda de dopamina na SNpc causa em Parkinson?",
-        "options": [
-          "a) Bradicinesia",
-          "b) Hipercinesia",
-          "c) Perda sensorial"
-        ],
-        "answer": "a",
-        "explanation": "A redução de dopamina leva à subativação da via direta, causando lentidão nos movimentos."
-      },
-      {
-        "question": "Qual técnica é usada para tratar distonia grave?",
-        "options": [
-          "a) Estimulação cerebral profunda",
-          "b) Terapia gênica",
-          "c) Levodopa"
-        ],
-        "answer": "a",
-        "explanation": "A DBS no GPi é eficaz no tratamento da distonia grave."
-      }
-    ]
-  },
   "Introdução aos Núcleos da Base_1": {
     "tema": "Introdução aos Núcleos da Base",
     "level": 1,
@@ -1582,11 +1074,541 @@
         "explanation": "A levodopa atravessa a barreira hematoencefálica e é convertida em dopamina, repondo o neurotransmissor deficiente na doença de Parkinson."
       }
     ]
+  },
+  "Componentes dos Núcleos da Base_1": {
+    "tema": "Componentes dos Núcleos da Base",
+    "level": 1,
+    "questions": [
+      {
+        "question": "O que são os núcleos da base?",
+        "options": [
+          "a) Um tipo de neurônio",
+          "b) Um grupo de estruturas subcorticais",
+          "c) Uma parte do cerebelo"
+        ],
+        "answer": "b",
+        "explanation": "Os núcleos da base são um conjunto de estruturas subcorticais localizadas na base do prosencéfalo, essenciais para funções motoras, cognitivas e emocionais."
+      },
+      {
+        "question": "Quais são os principais componentes dos núcleos da base?",
+        "options": [
+          "a) Hipocampo e amígdala",
+          "b) Corpo estriado, globo pálido, substância negra, núcleo subtalâmico",
+          "c) Tálamo e hipotálamo"
+        ],
+        "answer": "b",
+        "explanation": "Os componentes principais são o corpo estriado, globo pálido, substância negra e núcleo subtalâmico."
+      },
+      {
+        "question": "Onde estão localizados os núcleos da base?",
+        "options": [
+          "a) No tronco encefálico",
+          "b) Na base do prosencéfalo",
+          "c) Na superfície do córtex"
+        ],
+        "answer": "b",
+        "explanation": "Eles estão situados na base do prosencéfalo, abaixo do neocórtex."
+      },
+      {
+        "question": "Qual estrutura é a principal porta de entrada dos núcleos da base?",
+        "options": [
+          "a) Globo pálido",
+          "b) Corpo estriado",
+          "c) Núcleo subtalâmico"
+        ],
+        "answer": "b",
+        "explanation": "O corpo estriado é a principal porta de entrada, recebendo sinais corticais."
+      },
+      {
+        "question": "O globo pálido é um componente dos núcleos da base?",
+        "options": [
+          "a) Sim",
+          "b) Não",
+          "c) Apenas em algumas espécies"
+        ],
+        "answer": "a",
+        "explanation": "Sim, o globo pálido é um componente essencial, dividido em segmentos interno e externo."
+      },
+      {
+        "question": "Qual é a localização geral da substância negra?",
+        "options": [
+          "a) Mesencéfalo",
+          "b) Diencéfalo",
+          "c) Telencéfalo"
+        ],
+        "answer": "a",
+        "explanation": "A substância negra está localizada no mesencéfalo."
+      },
+      {
+        "question": "O núcleo subtalâmico está envolvido em qual função?",
+        "options": [
+          "a) Processamento auditivo",
+          "b) Regulação do globo pálido",
+          "c) Controle da respiração"
+        ],
+        "answer": "b",
+        "explanation": "O núcleo subtalâmico regula a atividade do globo pálido e da substância negra."
+      },
+      {
+        "question": "Os núcleos da base estão conectados ao córtex cerebral?",
+        "options": [
+          "a) Sim",
+          "b) Não",
+          "c) Apenas em condições patológicas"
+        ],
+        "answer": "a",
+        "explanation": "Sim, eles formam circuitos com o córtex cerebral, como o circuito córtico-estriatal-talâmico."
+      },
+      {
+        "question": "Qual é a importância clínica dos núcleos da base?",
+        "options": [
+          "a) Não têm relevância",
+          "b) Estão associados a distúrbios motores",
+          "c) Controlam apenas funções sensoriais"
+        ],
+        "answer": "b",
+        "explanation": "Disfunções nos núcleos da base estão ligadas a doenças como Parkinson e Huntington."
+      },
+      {
+        "question": "O corpo estriado é composto por quantas estruturas principais?",
+        "options": [
+          "a) Uma",
+          "b) Duas",
+          "c) Três"
+        ],
+        "answer": "b",
+        "explanation": "O corpo estriado é composto por duas estruturas: núcleo caudado e putâmen."
+      }
+    ]
+  },
+  "Componentes dos Núcleos da Base_2": {
+    "tema": "Componentes dos Núcleos da Base",
+    "level": 2,
+    "questions": [
+      {
+        "question": "Qual é a forma do núcleo caudado?",
+        "options": [
+          "a) Esférica",
+          "b) Em forma de C",
+          "c) Cilíndrica"
+        ],
+        "answer": "b",
+        "explanation": "O núcleo caudado tem uma estrutura em forma de C, com cabeça, corpo e cauda."
+      },
+      {
+        "question": "Onde está localizado o putâmen em relação ao globo pálido?",
+        "options": [
+          "a) Lateral",
+          "b) Medial",
+          "c) Superior"
+        ],
+        "answer": "a",
+        "explanation": "O putâmen está localizado lateralmente ao globo pálido, formando os núcleos lentiformes."
+      },
+      {
+        "question": "Quais são as duas partes do globo pálido?",
+        "options": [
+          "a) Anterior e posterior",
+          "b) Externo e interno",
+          "c) Dorsal e ventral"
+        ],
+        "answer": "b",
+        "explanation": "O globo pálido é dividido em segmento externo (GPe) e interno (GPi)."
+      },
+      {
+        "question": "Qual é a função principal do putâmen?",
+        "options": [
+          "a) Controle motor",
+          "b) Processamento visual",
+          "c) Regulação da temperatura"
+        ],
+        "answer": "a",
+        "explanation": "O putâmen está envolvido no controle motor, recebendo entradas do córtex motor."
+      },
+      {
+        "question": "Onde está situado o núcleo subtalâmico?",
+        "options": [
+          "a) Acima do tálamo",
+          "b) Ventralmente ao tálamo",
+          "c) No cerebelo"
+        ],
+        "answer": "b",
+        "explanation": "O núcleo subtalâmico é uma estrutura lenticular localizada ventralmente ao tálamo."
+      },
+      {
+        "question": "Qual parte da substância negra projeta dopamina para o estriado?",
+        "options": [
+          "a) Pars reticulata",
+          "b) Pars compacta",
+          "c) Ambas"
+        ],
+        "answer": "b",
+        "explanation": "A pars compacta (SNpc) contém neurônios dopaminérgicos que projetam para o estriado."
+      },
+      {
+        "question": "Qual é o papel do segmento interno do globo pálido (GPi)?",
+        "options": [
+          "a) Receber sinais corticais",
+          "b) Principal núcleo de saída",
+          "c) Produzir GABA"
+        ],
+        "answer": "b",
+        "explanation": "O GPi é o principal núcleo de saída, projetando-se para o tálamo."
+      },
+      {
+        "question": "O núcleo caudado está próximo a qual estrutura cerebral?",
+        "options": [
+          "a) Ventrículos laterais",
+          "b) Ponte",
+          "c) Medula espinhal"
+        ],
+        "answer": "a",
+        "explanation": "O núcleo caudado está localizado lateralmente aos ventrículos laterais."
+      },
+      {
+        "question": "Qual é o volume aproximado do corpo estriado?",
+        "options": [
+          "a) 5 cm³",
+          "b) 10 cm³",
+          "c) 15 cm³"
+        ],
+        "answer": "b",
+        "explanation": "O corpo estriado tem um volume aproximado de 10 cm³."
+      },
+      {
+        "question": "O que os núcleos lentiformes incluem?",
+        "options": [
+          "a) Núcleo caudado e substância negra",
+          "b) Putâmen e globo pálido",
+          "c) Tálamo e STN"
+        ],
+        "answer": "b",
+        "explanation": "Os núcleos lentiformes são formados pelo putâmen e globo pálido."
+      }
+    ]
+  },
+  "Componentes dos Núcleos da Base_3": {
+    "tema": "Componentes dos Núcleos da Base",
+    "level": 3,
+    "questions": [
+      {
+        "question": "Qual é o papel da via direta nos núcleos da base?",
+        "options": [
+          "a) Inibir o movimento",
+          "b) Facilitar o movimento",
+          "c) Regular a emoção"
+        ],
+        "answer": "b",
+        "explanation": "A via direta facilita o movimento ao inibir o GPi/SNpr, desinibindo o tálamo."
+      },
+      {
+        "question": "O que a via indireta faz nos núcleos da base?",
+        "options": [
+          "a) Facilita o movimento",
+          "b) Inibe o movimento",
+          "c) Modula a visão"
+        ],
+        "answer": "b",
+        "explanation": "A via indireta inibe o movimento ao aumentar a inibição sobre o tálamo via STN e GPi/SNpr."
+      },
+      {
+        "question": "Qual estrutura modula o estriado com dopamina?",
+        "options": [
+          "a) Globo pálido",
+          "b) Substância negra pars compacta",
+          "c) Núcleo subtalâmico"
+        ],
+        "answer": "b",
+        "explanation": "A SNpc projeta dopamina para o estriado, modulando as vias direta e indireta."
+      },
+      {
+        "question": "O que é a via hiperdireta?",
+        "options": [
+          "a) Conexão do córtex ao STN",
+          "b) Via que evita o tálamo",
+          "c) Conexão do GPe ao estriado"
+        ],
+        "answer": "a",
+        "explanation": "A via hiperdireta conecta diretamente o córtex ao núcleo subtalâmico para modulação rápida."
+      },
+      {
+        "question": "Quais núcleos são inibidos pelo estriado na via direta?",
+        "options": [
+          "a) GPe e STN",
+          "b) GPi e SNpr",
+          "c) Tálamo e córtex"
+        ],
+        "answer": "b",
+        "explanation": "Na via direta, o estriado inibe o GPi e SNpr, facilitando o movimento."
+      },
+      {
+        "question": "Qual estrutura excita o GPi/SNpr na via indireta?",
+        "options": [
+          "a) Núcleo subtalâmico",
+          "b) Núcleo caudado",
+          "c) GPe"
+        ],
+        "answer": "a",
+        "explanation": "O núcleo subtalâmico excita o GPi/SNpr com glutamato na via indireta."
+      },
+      {
+        "question": "Para onde o GPi projeta suas saídas?",
+        "options": [
+          "a) Córtex motor",
+          "b) Tálamo",
+          "c) Cerebelo"
+        ],
+        "answer": "b",
+        "explanation": "O GPi projeta-se para os núcleos ventrais anterior e lateral do tálamo."
+      },
+      {
+        "question": "Qual é a função da SNpr além do controle motor?",
+        "options": [
+          "a) Processamento emocional",
+          "b) Movimentos oculares",
+          "c) Integração sensorial"
+        ],
+        "answer": "b",
+        "explanation": "A SNpr está envolvida no controle de movimentos oculares via projeções ao colículo superior."
+      },
+      {
+        "question": "Quais sinais o estriado integra?",
+        "options": [
+          "a) Sinais corticais",
+          "b) Sinais do tronco encefálico",
+          "c) Sinais periféricos"
+        ],
+        "answer": "a",
+        "explanation": "O estriado integra projeções glutamatérgicas de todas as regiões corticais."
+      },
+      {
+        "question": "Como os circuitos dos núcleos da base são organizados?",
+        "options": [
+          "a) Em série",
+          "b) Em vias paralelas",
+          "c) Aleatoriamente"
+        ],
+        "answer": "b",
+        "explanation": "Os circuitos são organizados em vias paralelas para processar informações motoras, cognitivas e límbicas."
+      }
+    ]
+  },
+  "Componentes dos Núcleos da Base_4": {
+    "tema": "Componentes dos Núcleos da Base",
+    "level": 4,
+    "questions": [
+      {
+        "question": "Qual é o principal tipo de neurônio no estriado?",
+        "options": [
+          "a) Neurônios piramidais",
+          "b) Neurônios espinhosos médios",
+          "c) Neurônios granulares"
+        ],
+        "answer": "b",
+        "explanation": "Os neurônios espinhosos médios, GABAérgicos, compõem cerca de 95% do estriado."
+      },
+      {
+        "question": "Qual neurotransmissor o núcleo subtalâmico libera?",
+        "options": [
+          "a) Dopamina",
+          "b) Glutamato",
+          "c) GABA"
+        ],
+        "answer": "b",
+        "explanation": "O núcleo subtalâmico usa glutamato, um neurotransmissor excitatório, para projetar ao GPi/SNpr."
+      },
+      {
+        "question": "Qual é o neurotransmissor do globo pálido?",
+        "options": [
+          "a) GABA",
+          "b) Glutamato",
+          "c) Acetilcolina"
+        ],
+        "answer": "a",
+        "explanation": "O globo pálido utiliza GABA como neurotransmissor inibitório."
+      },
+      {
+        "question": "Quais receptores de dopamina estão no estriado?",
+        "options": [
+          "a) D1 e D2",
+          "b) D3 e D4",
+          "c) Apenas D5"
+        ],
+        "answer": "a",
+        "explanation": "Os receptores D1 e D2 modulam as vias direta e indireta no estriado."
+      },
+      {
+        "question": "Que tipo de neurônios a SNpc contém?",
+        "options": [
+          "a) GABAérgicos",
+          "b) Dopaminérgicos",
+          "c) Glutamatérgicos"
+        ],
+        "answer": "b",
+        "explanation": "A pars compacta da substância negra contém neurônios dopaminérgicos pigmentados."
+      },
+      {
+        "question": "Qual é o papel da acetilcolina no estriado?",
+        "options": [
+          "a) Inibir o GPi",
+          "b) Modular neurônios espinhosos médios",
+          "c) Excitar o STN"
+        ],
+        "answer": "b",
+        "explanation": "A acetilcolina, liberada por interneurônios, modula a atividade dos neurônios espinhosos médios."
+      },
+      {
+        "question": "O que diferencia os estriosomas da matriz no estriado?",
+        "options": [
+          "a) Funções distintas",
+          "b) Tipos de neurotransmissores",
+          "c) Localização"
+        ],
+        "answer": "a",
+        "explanation": "Estriosomas e matriz têm funções e conexões diferentes no estriado."
+      },
+      {
+        "question": "Qual é a característica dos neurônios do STN?",
+        "options": [
+          "a) Baixa taxa de disparo",
+          "b) Alta taxa de disparo espontâneo",
+          "c) Apenas inibitórios"
+        ],
+        "answer": "b",
+        "explanation": "Os neurônios do núcleo subtalâmico têm alta taxa de disparo espontâneo."
+      },
+      {
+        "question": "Quais interneurônios estão presentes no estriado?",
+        "options": [
+          "a) Apenas colinérgicos",
+          "b) Colinérgicos e GABAérgicos",
+          "c) Apenas glutamatérgicos"
+        ],
+        "answer": "b",
+        "explanation": "O estriado contém interneurônios colinérgicos e GABAérgicos, como os parvalbumina-positivos."
+      },
+      {
+        "question": "Qual neurotransmissor o córtex usa para projetar ao estriado?",
+        "options": [
+          "a) Dopamina",
+          "b) Glutamato",
+          "c) GABA"
+        ],
+        "answer": "b",
+        "explanation": "O córtex projeta glutamato excitatório para o estriado."
+      }
+    ]
+  },
+  "Componentes dos Núcleos da Base_5": {
+    "tema": "Componentes dos Núcleos da Base",
+    "level": 5,
+    "questions": [
+      {
+        "question": "Qual componente é afetado na doença de Parkinson?",
+        "options": [
+          "a) Substância negra pars compacta",
+          "b) Globo pálido externo",
+          "c) Núcleo caudado"
+        ],
+        "answer": "a",
+        "explanation": "A degeneração dos neurônios dopaminérgicos da SNpc é a principal característica da doença de Parkinson."
+      },
+      {
+        "question": "O que causa a coreia na doença de Huntington?",
+        "options": [
+          "a) Perda de neurônios GABAérgicos no estriado",
+          "b) Excesso de dopamina",
+          "c) Lesão no STN"
+        ],
+        "answer": "a",
+        "explanation": "A morte de neurônios GABAérgicos no estriado reduz a inibição, levando a movimentos involuntários."
+      },
+      {
+        "question": "Qual é a causa do hemibalismo?",
+        "options": [
+          "a) Lesão no núcleo subtalâmico",
+          "b) Degeneração do GPi",
+          "c) Mutação genética"
+        ],
+        "answer": "a",
+        "explanation": "Lesões no STN diminuem a excitação do GPi/SNpr, causando movimentos hipercinéticos."
+      },
+      {
+        "question": "Qual estrutura está associada à distonia?",
+        "options": [
+          "a) Globo pálido interno",
+          "b) Substância negra",
+          "c) Tálamo"
+        ],
+        "answer": "a",
+        "explanation": "Alterações no GPi podem levar a contrações musculares anormais na distonia."
+      },
+      {
+        "question": "O que está relacionado aos tiques na síndrome de Tourette?",
+        "options": [
+          "a) Disfunção no estriado",
+          "b) Lesão no GPe",
+          "c) Degeneração do STN"
+        ],
+        "answer": "a",
+        "explanation": "Disfunções no estriado, incluindo interneurônios GABAérgicos, contribuem para os tiques."
+      },
+      {
+        "question": "Qual é o alvo da estimulação cerebral profunda em Parkinson?",
+        "options": [
+          "a) STN ou GPi",
+          "b) Núcleo caudado",
+          "c) SNpr"
+        ],
+        "answer": "a",
+        "explanation": "A DBS no STN ou GPi modula circuitos anormais, aliviando sintomas motores."
+      },
+      {
+        "question": "Qual gene está mutado na doença de Huntington?",
+        "options": [
+          "a) PARK2",
+          "b) HTT",
+          "c) LRRK2"
+        ],
+        "answer": "b",
+        "explanation": "A mutação no gene HTT causa a doença de Huntington."
+      },
+      {
+        "question": "Qual sintoma motor caracteriza a doença de Huntington?",
+        "options": [
+          "a) Rigidez",
+          "b) Coreia",
+          "c) Tremor"
+        ],
+        "answer": "b",
+        "explanation": "Coreia, movimentos involuntários, é o principal sintoma motor da doença de Huntington."
+      },
+      {
+        "question": "O que a perda de dopamina na SNpc causa em Parkinson?",
+        "options": [
+          "a) Bradicinesia",
+          "b) Hipercinesia",
+          "c) Perda sensorial"
+        ],
+        "answer": "a",
+        "explanation": "A redução de dopamina leva à subativação da via direta, causando lentidão nos movimentos."
+      },
+      {
+        "question": "Qual técnica é usada para tratar distonia grave?",
+        "options": [
+          "a) Estimulação cerebral profunda",
+          "b) Terapia gênica",
+          "c) Levodopa"
+        ],
+        "answer": "a",
+        "explanation": "A DBS no GPi é eficaz no tratamento da distonia grave."
+      }
+    ]
   }
 };
         
         // Descrições dos níveis
-        const LEVEL_DESCRIPTIONS = {"Componentes dos Núcleos da Base_1": "Conceitos Fundamentais - Componentes dos Núcleos da Base", "Componentes dos Núcleos da Base_2": "Anatomia Básica - Componentes dos Núcleos da Base", "Componentes dos Núcleos da Base_3": "Funções e Circuitos - Componentes dos Núcleos da Base", "Componentes dos Núcleos da Base_4": "Patologias e Distúrbios - Componentes dos Núcleos da Base", "Componentes dos Núcleos da Base_5": "Neurotransmissores e Moléculas - Componentes dos Núcleos da Base", "Introdução aos Núcleos da Base_1": "Conceitos Fundamentais - Introdução aos Núcleos da Base", "Introdução aos Núcleos da Base_2": "Anatomia Básica - Introdução aos Núcleos da Base", "Introdução aos Núcleos da Base_3": "Funções e Circuitos - Introdução aos Núcleos da Base", "Introdução aos Núcleos da Base_4": "Patologias e Distúrbios - Introdução aos Núcleos da Base", "Introdução aos Núcleos da Base_5": "Neurotransmissores e Moléculas - Introdução aos Núcleos da Base"};
+        const LEVEL_DESCRIPTIONS = {"Introdução aos Núcleos da Base_1": "Conceitos Fundamentais - Introdução aos Núcleos da Base", "Introdução aos Núcleos da Base_2": "Anatomia Básica - Introdução aos Núcleos da Base", "Introdução aos Núcleos da Base_3": "Funções e Circuitos - Introdução aos Núcleos da Base", "Introdução aos Núcleos da Base_4": "Patologias e Distúrbios - Introdução aos Núcleos da Base", "Introdução aos Núcleos da Base_5": "Neurotransmissores e Moléculas - Introdução aos Núcleos da Base", "Componentes dos Núcleos da Base_1": "Conceitos Fundamentais - Componentes dos Núcleos da Base", "Componentes dos Núcleos da Base_2": "Anatomia Básica - Componentes dos Núcleos da Base", "Componentes dos Núcleos da Base_3": "Funções e Circuitos - Componentes dos Núcleos da Base", "Componentes dos Núcleos da Base_4": "Patologias e Distúrbios - Componentes dos Núcleos da Base", "Componentes dos Núcleos da Base_5": "Neurotransmissores e Moléculas - Componentes dos Núcleos da Base"};
 
         // Estado do jogo
         let currentLevelKey = null;
@@ -1632,7 +1654,18 @@
         function generateLevelGrid() {
             levelGridEl.innerHTML = '';
             
-            Object.keys(GAME_DATA).forEach(levelKey => {
+            // Ordenar níveis por tema e depois por nível
+            const sortedKeys = Object.keys(GAME_DATA).sort((a, b) => {
+                const [temaA, levelA] = a.split('_');
+                const [temaB, levelB] = b.split('_');
+                
+                if (temaA !== temaB) {
+                    return temaA.localeCompare(temaB);
+                }
+                return parseInt(levelA) - parseInt(levelB);
+            });
+            
+            sortedKeys.forEach(levelKey => {
                 const levelData = GAME_DATA[levelKey];
                 const isCompleted = gameProgress[levelKey] && gameProgress[levelKey].completed;
                 const questionCount = levelData.questions.length;
@@ -1642,7 +1675,7 @@
                 levelButton.onclick = () => startLevel(levelKey);
                 
                 levelButton.innerHTML = `
-                    <div class="level-title">Nível ${levelData.level}</div>
+                    <div class="level-title">Nível ${levelData.level}: ${levelData.tema}</div>
                     <div class="level-description">${LEVEL_DESCRIPTIONS[levelKey] || levelData.tema}</div>
                     <div class="level-stats">${questionCount} questões</div>
                 `;
@@ -1755,7 +1788,7 @@
         }
 
         // Mostrar tela de conclusão
-        function showCompletionScreen() {{
+        function showCompletionScreen() {
             const levelData = GAME_DATA[currentLevelKey];
             const maxScore = levelData.questions.length * 10;
             const percentage = Math.round((score / maxScore) * 100);
