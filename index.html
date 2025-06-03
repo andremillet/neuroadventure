@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NeuroAdventure - Núcleos da Base</title>
+    <title>NeuroAdventure - Neuroanatomia Interativa</title>
     <style>
-        * {
+        * {{
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-        }
+        }}
 
-        body {
+        body {{
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
@@ -20,9 +20,9 @@
             justify-content: center;
             color: #333;
             overflow-x: hidden;
-        }
+        }}
 
-        .neural-background {
+        .neural-background {{
             position: fixed;
             top: 0;
             left: 0;
@@ -30,46 +30,46 @@
             height: 100%;
             z-index: -1;
             opacity: 0.1;
-        }
+        }}
 
-        .neuron {
+        .neuron {{
             position: absolute;
             width: 4px;
             height: 4px;
             background: white;
             border-radius: 50%;
             animation: float 6s ease-in-out infinite;
-        }
+        }}
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
-        }
+        @keyframes float {{
+            0%, 100% {{ transform: translateY(0px) rotate(0deg); }}
+            50% {{ transform: translateY(-20px) rotate(180deg); }}
+        }}
 
-        .game-container {
+        .game-container {{
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(20px);
             border-radius: 24px;
             padding: 2rem;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            max-width: 800px;
+            max-width: 900px;
             width: 90%;
             margin: 20px;
             border: 1px solid rgba(255, 255, 255, 0.2);
             animation: slideIn 0.8s ease-out;
-        }
+        }}
 
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes slideIn {{
+            from {{ opacity: 0; transform: translateY(30px); }}
+            to {{ opacity: 1; transform: translateY(0); }}
+        }}
 
-        .game-header {
+        .game-header {{
             text-align: center;
             margin-bottom: 2rem;
-        }
+        }}
 
-        .game-title {
+        .game-title {{
             font-size: 2.5rem;
             font-weight: 800;
             background: linear-gradient(135deg, #667eea, #764ba2);
@@ -77,15 +77,86 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             margin-bottom: 0.5rem;
-        }
+        }}
 
-        .game-subtitle {
+        .game-subtitle {{
             font-size: 1.1rem;
             color: #666;
             font-weight: 500;
-        }
+        }}
 
-        .level-info {
+        .level-selection {{
+            display: block;
+        }}
+
+        .level-selection.hidden {{
+            display: none;
+        }}
+
+        .level-grid {{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }}
+
+        .level-button {{
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }}
+
+        .level-button:hover {{
+            border-color: #667eea;
+            background: #f7fafc;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(102, 126, 234, 0.15);
+        }}
+
+        .level-button.completed {{
+            background: linear-gradient(135deg, #48bb78, #38a169);
+            border-color: #38a169;
+            color: white;
+        }}
+
+        .level-title {{
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }}
+
+        .level-button.completed .level-title {{
+            color: white;
+        }}
+
+        .level-description {{
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.4;
+        }}
+
+        .level-button.completed .level-description {{
+            color: rgba(255, 255, 255, 0.9);
+        }}
+
+        .level-stats {{
+            font-size: 0.8rem;
+            color: #999;
+            margin-top: 0.5rem;
+        }}
+
+        .level-button.completed .level-stats {{
+            color: rgba(255, 255, 255, 0.8);
+        }}
+
+        .level-info {{
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -95,69 +166,77 @@
             border-radius: 16px;
             margin-bottom: 2rem;
             box-shadow: 0 8px 16px rgba(240, 147, 251, 0.3);
-        }
+        }}
 
-        .level-badge {
+        .level-info.hidden {{
+            display: none;
+        }}
+
+        .level-badge {{
             font-weight: 700;
             font-size: 1.1rem;
-        }
+        }}
 
-        .score-display {
+        .score-display {{
             font-weight: 600;
             display: flex;
             align-items: center;
             gap: 0.5rem;
-        }
+        }}
 
-        .progress-bar {
+        .progress-bar {{
             background: rgba(255, 255, 255, 0.3);
             height: 8px;
             border-radius: 4px;
             margin-top: 1rem;
             overflow: hidden;
-        }
+        }}
 
-        .progress-fill {
+        .progress-fill {{
             height: 100%;
             background: linear-gradient(90deg, #4facfe, #00f2fe);
             width: 0%;
             transition: width 0.6s ease;
             border-radius: 4px;
-        }
+        }}
 
-        .question-container {
+        .question-screen {{
+            display: none;
+        }}
+
+        .question-container {{
             background: #f8fafc;
             border-radius: 20px;
             padding: 2rem;
             margin-bottom: 1.5rem;
             border: 2px solid #e2e8f0;
             transition: all 0.3s ease;
-        }
+        }}
 
-        .question-number {
+        .question-number {{
             color: #667eea;
             font-weight: 700;
             font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-bottom: 1rem;
-        }
+        }}
 
-        .question-text {
+        .question-text {{
             font-size: 1.4rem;
             font-weight: 600;
             color: #2d3748;
             line-height: 1.4;
             margin-bottom: 1.5rem;
-        }
+        }}
 
-        .options-container {
+        .options-container {{
             display: flex;
             flex-direction: column;
             gap: 1rem;
-        }
+        }}
 
-        .option-button {
+        .option-button {{
             background: white;
             border: 2px solid #e2e8f0;
             border-radius: 16px;
@@ -170,49 +249,49 @@
             color: #4a5568;
             position: relative;
             overflow: hidden;
-        }
+        }}
 
-        .option-button:hover {
+        .option-button:hover {{
             border-color: #667eea;
             background: #f7fafc;
             transform: translateX(8px);
             box-shadow: 0 8px 16px rgba(102, 126, 234, 0.15);
-        }
+        }}
 
-        .option-button.correct {
+        .option-button.correct {{
             background: linear-gradient(135deg, #48bb78, #38a169);
             border-color: #38a169;
             color: white;
             transform: scale(1.02);
-        }
+        }}
 
-        .option-button.incorrect {
+        .option-button.incorrect {{
             background: linear-gradient(135deg, #f56565, #e53e3e);
             border-color: #e53e3e;
             color: white;
             animation: shake 0.5s ease;
-        }
+        }}
 
-        .option-button.disabled {
+        .option-button.disabled {{
             pointer-events: none;
             opacity: 0.7;
-        }
+        }}
 
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-8px); }
-            75% { transform: translateX(8px); }
-        }
+        @keyframes shake {{
+            0%, 100% {{ transform: translateX(0); }}
+            25% {{ transform: translateX(-8px); }}
+            75% {{ transform: translateX(8px); }}
+        }}
 
-        .controls {
+        .controls {{
             display: flex;
             justify-content: space-between;
             align-items: center;
             gap: 1rem;
             margin-top: 2rem;
-        }
+        }}
 
-        .btn {
+        .btn {{
             padding: 0.75rem 1.5rem;
             border: none;
             border-radius: 12px;
@@ -222,36 +301,36 @@
             transition: all 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-        }
+        }}
 
-        .btn-primary {
+        .btn-primary {{
             background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
             box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
-        }
+        }}
 
-        .btn-primary:hover {
+        .btn-primary:hover {{
             transform: translateY(-2px);
             box-shadow: 0 12px 24px rgba(102, 126, 234, 0.4);
-        }
+        }}
 
-        .btn-secondary {
+        .btn-secondary {{
             background: #e2e8f0;
             color: #4a5568;
-        }
+        }}
 
-        .btn-secondary:hover {
+        .btn-secondary:hover {{
             background: #cbd5e0;
             transform: translateY(-1px);
-        }
+        }}
 
-        .btn:disabled {
+        .btn:disabled {{
             opacity: 0.6;
             cursor: not-allowed;
             transform: none !important;
-        }
+        }}
 
-        .explanation-panel {
+        .explanation-panel {{
             background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
             border-radius: 16px;
             padding: 1.5rem;
@@ -259,51 +338,51 @@
             border-left: 4px solid #f6ad55;
             display: none;
             animation: fadeIn 0.5s ease;
-        }
+        }}
 
-        .explanation-panel.show {
+        .explanation-panel.show {{
             display: block;
-        }
+        }}
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeIn {{
+            from {{ opacity: 0; transform: translateY(20px); }}
+            to {{ opacity: 1; transform: translateY(0); }}
+        }}
 
-        .explanation-title {
+        .explanation-title {{
             font-weight: 700;
             color: #c05621;
             margin-bottom: 0.5rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
-        }
+        }}
 
-        .explanation-text {
+        .explanation-text {{
             color: #744210;
             line-height: 1.6;
             font-weight: 500;
-        }
+        }}
 
-        .completion-screen {
+        .completion-screen {{
             text-align: center;
             padding: 2rem;
             display: none;
-        }
+        }}
 
-        .completion-screen.show {
+        .completion-screen.show {{
             display: block;
             animation: slideIn 0.8s ease;
-        }
+        }}
 
-        .completion-title {
+        .completion-title {{
             font-size: 2.5rem;
             font-weight: 800;
             color: #48bb78;
             margin-bottom: 1rem;
-        }
+        }}
 
-        .score-summary {
+        .score-summary {{
             background: linear-gradient(135deg, #48bb78, #38a169);
             color: white;
             padding: 1.5rem;
@@ -311,48 +390,52 @@
             margin: 1.5rem 0;
             font-size: 1.2rem;
             font-weight: 600;
-        }
+        }}
 
-        .brain-icon {
+        .brain-icon {{
             font-size: 3rem;
             margin-bottom: 1rem;
             animation: pulse 2s infinite;
-        }
+        }}
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
+        @keyframes pulse {{
+            0%, 100% {{ transform: scale(1); }}
+            50% {{ transform: scale(1.1); }}
+        }}
 
-        @media (max-width: 768px) {
-            .game-container {
+        @media (max-width: 768px) {{
+            .game-container {{
                 padding: 1.5rem;
                 margin: 10px;
-            }
+            }}
 
-            .game-title {
+            .game-title {{
                 font-size: 2rem;
-            }
+            }}
 
-            .question-text {
+            .question-text {{
                 font-size: 1.2rem;
-            }
+            }}
 
-            .level-info {
+            .level-info {{
                 flex-direction: column;
                 gap: 1rem;
                 text-align: center;
-            }
+            }}
 
-            .controls {
+            .controls {{
                 flex-direction: column;
                 gap: 1rem;
-            }
+            }}
 
-            .controls .btn {
+            .controls .btn {{
                 width: 100%;
-            }
-        }
+            }}
+
+            .level-grid {{
+                grid-template-columns: 1fr;
+            }}
+        }}
     </style>
 </head>
 <body>
@@ -361,12 +444,25 @@
     <div class="game-container">
         <header class="game-header">
             <h1 class="game-title">NeuroAdventure</h1>
-            <p class="game-subtitle">Explorando os Mistérios dos Núcleos da Base</p>
+            <p class="game-subtitle">Explorando os Mistérios da Neuroanatomia</p>
         </header>
 
-        <div class="level-info">
-            <div class="level-badge">
-                <span>🧠</span> Nível 1: Introdução aos Núcleos da Base
+        <!-- Seleção de Níveis -->
+        <div class="level-selection" id="levelSelection">
+            <div class="level-grid" id="levelGrid">
+                <!-- Níveis serão gerados dinamicamente -->
+            </div>
+            <div style="text-align: center; margin-top: 2rem;">
+                <button class="btn btn-secondary" onclick="resetAllProgress()">
+                    🔄 Resetar Progresso
+                </button>
+            </div>
+        </div>
+
+        <!-- Informações do Nível -->
+        <div class="level-info hidden" id="levelInfo">
+            <div class="level-badge" id="levelBadge">
+                <span>🧠</span> <span id="levelTitle"></span>
             </div>
             <div class="score-display">
                 <span>⭐</span>
@@ -377,7 +473,8 @@
             </div>
         </div>
 
-        <div id="questionScreen">
+        <!-- Tela de Questões -->
+        <div class="question-screen" id="questionScreen">
             <div class="question-container">
                 <div class="question-number" id="questionNumber">Pergunta 1 de 10</div>
                 <div class="question-text" id="questionText"></div>
@@ -392,6 +489,9 @@
             </div>
 
             <div class="controls">
+                <button class="btn btn-secondary" onclick="backToLevelSelection()">
+                    ← Voltar aos Níveis
+                </button>
                 <button class="btn btn-secondary" id="showExplanationBtn">
                     💡 Ver Explicação
                 </button>
@@ -401,91 +501,1108 @@
             </div>
         </div>
 
+        <!-- Tela de Conclusão -->
         <div class="completion-screen" id="completionScreen">
             <div class="brain-icon">🧠</div>
             <h2 class="completion-title">Nível Concluído!</h2>
             <div class="score-summary" id="finalScore"></div>
             <p style="color: #666; margin-bottom: 2rem;">
-                Parabéns! Você completou a introdução aos núcleos da base.
+                Parabéns! Você completou este nível.
             </p>
-            <button class="btn btn-primary" onclick="restartGame()">
-                🔄 Jogar Novamente
-            </button>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <button class="btn btn-secondary" onclick="backToLevelSelection()">
+                    📚 Escolher Outro Nível
+                </button>
+                <button class="btn btn-primary" onclick="restartCurrentLevel()">
+                    🔄 Jogar Novamente
+                </button>
+            </div>
         </div>
     </div>
 
     <script>
-        // Game data
-        const gameData = [
-            {
-                question: "O que são os núcleos da base?",
-                options: ["a) Um tipo de neurônio", "b) Um grupo de núcleos subcorticais", "c) Uma parte da medula espinhal"],
-                answer: "b",
-                explanation: "Os núcleos da base são uma coleção de estruturas subcorticais localizadas na base do prosencéfalo, envolvidas no controle motor e outras funções."
-            },
-            {
-                question: "Onde estão localizados os núcleos da base?",
-                options: ["a) No cerebelo", "b) Na base do prosencéfalo", "c) No tronco encefálico"],
-                answer: "b",
-                explanation: "Eles estão localizados profundamente dentro dos hemisférios cerebrais, na base do prosencéfalo."
-            },
-            {
-                question: "Qual é a função primária dos núcleos da base?",
-                options: ["a) Processamento sensorial", "b) Controle motor", "c) Armazenamento de memória"],
-                answer: "b",
-                explanation: "Embora tenham várias funções, seu papel principal é na regulação dos movimentos voluntários."
-            },
-            {
-                question: "Os núcleos da base fazem parte do sistema nervoso central?",
-                options: ["a) Sim, fazem parte do SNC", "b) Não, fazem parte do SNP", "c) Não fazem parte do sistema nervoso"],
-                answer: "a",
-                explanation: "Os núcleos da base estão no cérebro, sendo, portanto, parte do sistema nervoso central."
-            },
-            {
-                question: "Os núcleos da base controlam diretamente os movimentos musculares?",
-                options: ["a) Sim, enviam sinais diretamente aos músculos", "b) Não, modulam a atividade motora indiretamente", "c) Apenas em certas condições"],
-                answer: "b",
-                explanation: "Eles influenciam a atividade motora por meio de conexões com o córtex motor, mas não inervam diretamente os músculos."
-            },
-            {
-                question: "Além do controle motor, em que outras funções os núcleos da base estão envolvidos?",
-                options: ["a) Visão e audição", "b) Cognição e emoção", "c) Digestão e respiração"],
-                answer: "b",
-                explanation: "Eles desempenham papéis em processos cognitivos, como aprendizado, e na regulação emocional."
-            },
-            {
-                question: "Os núcleos da base são uma estrutura única?",
-                options: ["a) Sim, é um grande núcleo", "b) Não, é um grupo de estruturas interconectadas", "c) Varia entre indivíduos"],
-                answer: "b",
-                explanation: "Os núcleos da base consistem em vários núcleos distintos, mas interconectados."
-            },
-            {
-                question: "Qual é outro termo às vezes usado para os núcleos da base?",
-                options: ["a) Gânglios basais", "b) Córtex cerebral", "c) Sistema límbico"],
-                answer: "a",
-                explanation: "O termo 'gânglios basais' é comumente usado, embora 'núcleos da base' seja anatomicamente mais correto."
-            },
-            {
-                question: "Os núcleos da base desempenham um papel na emoção?",
-                options: ["a) Sim, por meio de conexões com o sistema límbico", "b) Não, são apenas estruturas motoras", "c) Apenas em condições patológicas"],
-                answer: "a",
-                explanation: "Os núcleos da base, especialmente o estriado ventral, estão envolvidos no processamento de recompensas e emoções."
-            },
-            {
-                question: "Por que os núcleos da base são importantes para entender distúrbios neurológicos?",
-                options: ["a) Porque são afetados em muitos distúrbios", "b) Porque causam todas as doenças neurológicas", "c) Porque são fáceis de estudar"],
-                answer: "a",
-                explanation: "Distúrbios como Parkinson e Huntington envolvem disfunções nos núcleos da base, tornando-os cruciais para entender essas condições."
-            }
-        ];
+        // Dados do jogo - gerado dinamicamente
+        const GAME_DATA = {
+  "Componentes dos Núcleos da Base_1": {
+    "tema": "Componentes dos Núcleos da Base",
+    "level": 1,
+    "questions": [
+      {
+        "question": "O que são os núcleos da base?",
+        "options": [
+          "a) Um tipo de neurônio",
+          "b) Um grupo de estruturas subcorticais",
+          "c) Uma parte do cerebelo"
+        ],
+        "answer": "b",
+        "explanation": "Os núcleos da base são um conjunto de estruturas subcorticais localizadas na base do prosencéfalo, essenciais para funções motoras, cognitivas e emocionais."
+      },
+      {
+        "question": "Quais são os principais componentes dos núcleos da base?",
+        "options": [
+          "a) Hipocampo e amígdala",
+          "b) Corpo estriado, globo pálido, substância negra, núcleo subtalâmico",
+          "c) Tálamo e hipotálamo"
+        ],
+        "answer": "b",
+        "explanation": "Os componentes principais são o corpo estriado, globo pálido, substância negra e núcleo subtalâmico."
+      },
+      {
+        "question": "Onde estão localizados os núcleos da base?",
+        "options": [
+          "a) No tronco encefálico",
+          "b) Na base do prosencéfalo",
+          "c) Na superfície do córtex"
+        ],
+        "answer": "b",
+        "explanation": "Eles estão situados na base do prosencéfalo, abaixo do neocórtex."
+      },
+      {
+        "question": "Qual estrutura é a principal porta de entrada dos núcleos da base?",
+        "options": [
+          "a) Globo pálido",
+          "b) Corpo estriado",
+          "c) Núcleo subtalâmico"
+        ],
+        "answer": "b",
+        "explanation": "O corpo estriado é a principal porta de entrada, recebendo sinais corticais."
+      },
+      {
+        "question": "O globo pálido é um componente dos núcleos da base?",
+        "options": [
+          "a) Sim",
+          "b) Não",
+          "c) Apenas em algumas espécies"
+        ],
+        "answer": "a",
+        "explanation": "Sim, o globo pálido é um componente essencial, dividido em segmentos interno e externo."
+      },
+      {
+        "question": "Qual é a localização geral da substância negra?",
+        "options": [
+          "a) Mesencéfalo",
+          "b) Diencéfalo",
+          "c) Telencéfalo"
+        ],
+        "answer": "a",
+        "explanation": "A substância negra está localizada no mesencéfalo."
+      },
+      {
+        "question": "O núcleo subtalâmico está envolvido em qual função?",
+        "options": [
+          "a) Processamento auditivo",
+          "b) Regulação do globo pálido",
+          "c) Controle da respiração"
+        ],
+        "answer": "b",
+        "explanation": "O núcleo subtalâmico regula a atividade do globo pálido e da substância negra."
+      },
+      {
+        "question": "Os núcleos da base estão conectados ao córtex cerebral?",
+        "options": [
+          "a) Sim",
+          "b) Não",
+          "c) Apenas em condições patológicas"
+        ],
+        "answer": "a",
+        "explanation": "Sim, eles formam circuitos com o córtex cerebral, como o circuito córtico-estriatal-talâmico."
+      },
+      {
+        "question": "Qual é a importância clínica dos núcleos da base?",
+        "options": [
+          "a) Não têm relevância",
+          "b) Estão associados a distúrbios motores",
+          "c) Controlam apenas funções sensoriais"
+        ],
+        "answer": "b",
+        "explanation": "Disfunções nos núcleos da base estão ligadas a doenças como Parkinson e Huntington."
+      },
+      {
+        "question": "O corpo estriado é composto por quantas estruturas principais?",
+        "options": [
+          "a) Uma",
+          "b) Duas",
+          "c) Três"
+        ],
+        "answer": "b",
+        "explanation": "O corpo estriado é composto por duas estruturas: núcleo caudado e putâmen."
+      }
+    ]
+  },
+  "Componentes dos Núcleos da Base_2": {
+    "tema": "Componentes dos Núcleos da Base",
+    "level": 2,
+    "questions": [
+      {
+        "question": "Qual é a forma do núcleo caudado?",
+        "options": [
+          "a) Esférica",
+          "b) Em forma de C",
+          "c) Cilíndrica"
+        ],
+        "answer": "b",
+        "explanation": "O núcleo caudado tem uma estrutura em forma de C, com cabeça, corpo e cauda."
+      },
+      {
+        "question": "Onde está localizado o putâmen em relação ao globo pálido?",
+        "options": [
+          "a) Lateral",
+          "b) Medial",
+          "c) Superior"
+        ],
+        "answer": "a",
+        "explanation": "O putâmen está localizado lateralmente ao globo pálido, formando os núcleos lentiformes."
+      },
+      {
+        "question": "Quais são as duas partes do globo pálido?",
+        "options": [
+          "a) Anterior e posterior",
+          "b) Externo e interno",
+          "c) Dorsal e ventral"
+        ],
+        "answer": "b",
+        "explanation": "O globo pálido é dividido em segmento externo (GPe) e interno (GPi)."
+      },
+      {
+        "question": "Qual é a função principal do putâmen?",
+        "options": [
+          "a) Controle motor",
+          "b) Processamento visual",
+          "c) Regulação da temperatura"
+        ],
+        "answer": "a",
+        "explanation": "O putâmen está envolvido no controle motor, recebendo entradas do córtex motor."
+      },
+      {
+        "question": "Onde está situado o núcleo subtalâmico?",
+        "options": [
+          "a) Acima do tálamo",
+          "b) Ventralmente ao tálamo",
+          "c) No cerebelo"
+        ],
+        "answer": "b",
+        "explanation": "O núcleo subtalâmico é uma estrutura lenticular localizada ventralmente ao tálamo."
+      },
+      {
+        "question": "Qual parte da substância negra projeta dopamina para o estriado?",
+        "options": [
+          "a) Pars reticulata",
+          "b) Pars compacta",
+          "c) Ambas"
+        ],
+        "answer": "b",
+        "explanation": "A pars compacta (SNpc) contém neurônios dopaminérgicos que projetam para o estriado."
+      },
+      {
+        "question": "Qual é o papel do segmento interno do globo pálido (GPi)?",
+        "options": [
+          "a) Receber sinais corticais",
+          "b) Principal núcleo de saída",
+          "c) Produzir GABA"
+        ],
+        "answer": "b",
+        "explanation": "O GPi é o principal núcleo de saída, projetando-se para o tálamo."
+      },
+      {
+        "question": "O núcleo caudado está próximo a qual estrutura cerebral?",
+        "options": [
+          "a) Ventrículos laterais",
+          "b) Ponte",
+          "c) Medula espinhal"
+        ],
+        "answer": "a",
+        "explanation": "O núcleo caudado está localizado lateralmente aos ventrículos laterais."
+      },
+      {
+        "question": "Qual é o volume aproximado do corpo estriado?",
+        "options": [
+          "a) 5 cm³",
+          "b) 10 cm³",
+          "c) 15 cm³"
+        ],
+        "answer": "b",
+        "explanation": "O corpo estriado tem um volume aproximado de 10 cm³."
+      },
+      {
+        "question": "O que os núcleos lentiformes incluem?",
+        "options": [
+          "a) Núcleo caudado e substância negra",
+          "b) Putâmen e globo pálido",
+          "c) Tálamo e STN"
+        ],
+        "answer": "b",
+        "explanation": "Os núcleos lentiformes são formados pelo putâmen e globo pálido."
+      }
+    ]
+  },
+  "Componentes dos Núcleos da Base_3": {
+    "tema": "Componentes dos Núcleos da Base",
+    "level": 3,
+    "questions": [
+      {
+        "question": "Qual é o papel da via direta nos núcleos da base?",
+        "options": [
+          "a) Inibir o movimento",
+          "b) Facilitar o movimento",
+          "c) Regular a emoção"
+        ],
+        "answer": "b",
+        "explanation": "A via direta facilita o movimento ao inibir o GPi/SNpr, desinibindo o tálamo."
+      },
+      {
+        "question": "O que a via indireta faz nos núcleos da base?",
+        "options": [
+          "a) Facilita o movimento",
+          "b) Inibe o movimento",
+          "c) Modula a visão"
+        ],
+        "answer": "b",
+        "explanation": "A via indireta inibe o movimento ao aumentar a inibição sobre o tálamo via STN e GPi/SNpr."
+      },
+      {
+        "question": "Qual estrutura modula o estriado com dopamina?",
+        "options": [
+          "a) Globo pálido",
+          "b) Substância negra pars compacta",
+          "c) Núcleo subtalâmico"
+        ],
+        "answer": "b",
+        "explanation": "A SNpc projeta dopamina para o estriado, modulando as vias direta e indireta."
+      },
+      {
+        "question": "O que é a via hiperdireta?",
+        "options": [
+          "a) Conexão do córtex ao STN",
+          "b) Via que evita o tálamo",
+          "c) Conexão do GPe ao estriado"
+        ],
+        "answer": "a",
+        "explanation": "A via hiperdireta conecta diretamente o córtex ao núcleo subtalâmico para modulação rápida."
+      },
+      {
+        "question": "Quais núcleos são inibidos pelo estriado na via direta?",
+        "options": [
+          "a) GPe e STN",
+          "b) GPi e SNpr",
+          "c) Tálamo e córtex"
+        ],
+        "answer": "b",
+        "explanation": "Na via direta, o estriado inibe o GPi e SNpr, facilitando o movimento."
+      },
+      {
+        "question": "Qual estrutura excita o GPi/SNpr na via indireta?",
+        "options": [
+          "a) Núcleo subtalâmico",
+          "b) Núcleo caudado",
+          "c) GPe"
+        ],
+        "answer": "a",
+        "explanation": "O núcleo subtalâmico excita o GPi/SNpr com glutamato na via indireta."
+      },
+      {
+        "question": "Para onde o GPi projeta suas saídas?",
+        "options": [
+          "a) Córtex motor",
+          "b) Tálamo",
+          "c) Cerebelo"
+        ],
+        "answer": "b",
+        "explanation": "O GPi projeta-se para os núcleos ventrais anterior e lateral do tálamo."
+      },
+      {
+        "question": "Qual é a função da SNpr além do controle motor?",
+        "options": [
+          "a) Processamento emocional",
+          "b) Movimentos oculares",
+          "c) Integração sensorial"
+        ],
+        "answer": "b",
+        "explanation": "A SNpr está envolvida no controle de movimentos oculares via projeções ao colículo superior."
+      },
+      {
+        "question": "Quais sinais o estriado integra?",
+        "options": [
+          "a) Sinais corticais",
+          "b) Sinais do tronco encefálico",
+          "c) Sinais periféricos"
+        ],
+        "answer": "a",
+        "explanation": "O estriado integra projeções glutamatérgicas de todas as regiões corticais."
+      },
+      {
+        "question": "Como os circuitos dos núcleos da base são organizados?",
+        "options": [
+          "a) Em série",
+          "b) Em vias paralelas",
+          "c) Aleatoriamente"
+        ],
+        "answer": "b",
+        "explanation": "Os circuitos são organizados em vias paralelas para processar informações motoras, cognitivas e límbicas."
+      }
+    ]
+  },
+  "Componentes dos Núcleos da Base_4": {
+    "tema": "Componentes dos Núcleos da Base",
+    "level": 4,
+    "questions": [
+      {
+        "question": "Qual é o principal tipo de neurônio no estriado?",
+        "options": [
+          "a) Neurônios piramidais",
+          "b) Neurônios espinhosos médios",
+          "c) Neurônios granulares"
+        ],
+        "answer": "b",
+        "explanation": "Os neurônios espinhosos médios, GABAérgicos, compõem cerca de 95% do estriado."
+      },
+      {
+        "question": "Qual neurotransmissor o núcleo subtalâmico libera?",
+        "options": [
+          "a) Dopamina",
+          "b) Glutamato",
+          "c) GABA"
+        ],
+        "answer": "b",
+        "explanation": "O núcleo subtalâmico usa glutamato, um neurotransmissor excitatório, para projetar ao GPi/SNpr."
+      },
+      {
+        "question": "Qual é o neurotransmissor do globo pálido?",
+        "options": [
+          "a) GABA",
+          "b) Glutamato",
+          "c) Acetilcolina"
+        ],
+        "answer": "a",
+        "explanation": "O globo pálido utiliza GABA como neurotransmissor inibitório."
+      },
+      {
+        "question": "Quais receptores de dopamina estão no estriado?",
+        "options": [
+          "a) D1 e D2",
+          "b) D3 e D4",
+          "c) Apenas D5"
+        ],
+        "answer": "a",
+        "explanation": "Os receptores D1 e D2 modulam as vias direta e indireta no estriado."
+      },
+      {
+        "question": "Que tipo de neurônios a SNpc contém?",
+        "options": [
+          "a) GABAérgicos",
+          "b) Dopaminérgicos",
+          "c) Glutamatérgicos"
+        ],
+        "answer": "b",
+        "explanation": "A pars compacta da substância negra contém neurônios dopaminérgicos pigmentados."
+      },
+      {
+        "question": "Qual é o papel da acetilcolina no estriado?",
+        "options": [
+          "a) Inibir o GPi",
+          "b) Modular neurônios espinhosos médios",
+          "c) Excitar o STN"
+        ],
+        "answer": "b",
+        "explanation": "A acetilcolina, liberada por interneurônios, modula a atividade dos neurônios espinhosos médios."
+      },
+      {
+        "question": "O que diferencia os estriosomas da matriz no estriado?",
+        "options": [
+          "a) Funções distintas",
+          "b) Tipos de neurotransmissores",
+          "c) Localização"
+        ],
+        "answer": "a",
+        "explanation": "Estriosomas e matriz têm funções e conexões diferentes no estriado."
+      },
+      {
+        "question": "Qual é a característica dos neurônios do STN?",
+        "options": [
+          "a) Baixa taxa de disparo",
+          "b) Alta taxa de disparo espontâneo",
+          "c) Apenas inibitórios"
+        ],
+        "answer": "b",
+        "explanation": "Os neurônios do núcleo subtalâmico têm alta taxa de disparo espontâneo."
+      },
+      {
+        "question": "Quais interneurônios estão presentes no estriado?",
+        "options": [
+          "a) Apenas colinérgicos",
+          "b) Colinérgicos e GABAérgicos",
+          "c) Apenas glutamatérgicos"
+        ],
+        "answer": "b",
+        "explanation": "O estriado contém interneurônios colinérgicos e GABAérgicos, como os parvalbumina-positivos."
+      },
+      {
+        "question": "Qual neurotransmissor o córtex usa para projetar ao estriado?",
+        "options": [
+          "a) Dopamina",
+          "b) Glutamato",
+          "c) GABA"
+        ],
+        "answer": "b",
+        "explanation": "O córtex projeta glutamato excitatório para o estriado."
+      }
+    ]
+  },
+  "Componentes dos Núcleos da Base_5": {
+    "tema": "Componentes dos Núcleos da Base",
+    "level": 5,
+    "questions": [
+      {
+        "question": "Qual componente é afetado na doença de Parkinson?",
+        "options": [
+          "a) Substância negra pars compacta",
+          "b) Globo pálido externo",
+          "c) Núcleo caudado"
+        ],
+        "answer": "a",
+        "explanation": "A degeneração dos neurônios dopaminérgicos da SNpc é a principal característica da doença de Parkinson."
+      },
+      {
+        "question": "O que causa a coreia na doença de Huntington?",
+        "options": [
+          "a) Perda de neurônios GABAérgicos no estriado",
+          "b) Excesso de dopamina",
+          "c) Lesão no STN"
+        ],
+        "answer": "a",
+        "explanation": "A morte de neurônios GABAérgicos no estriado reduz a inibição, levando a movimentos involuntários."
+      },
+      {
+        "question": "Qual é a causa do hemibalismo?",
+        "options": [
+          "a) Lesão no núcleo subtalâmico",
+          "b) Degeneração do GPi",
+          "c) Mutação genética"
+        ],
+        "answer": "a",
+        "explanation": "Lesões no STN diminuem a excitação do GPi/SNpr, causando movimentos hipercinéticos."
+      },
+      {
+        "question": "Qual estrutura está associada à distonia?",
+        "options": [
+          "a) Globo pálido interno",
+          "b) Substância negra",
+          "c) Tálamo"
+        ],
+        "answer": "a",
+        "explanation": "Alterações no GPi podem levar a contrações musculares anormais na distonia."
+      },
+      {
+        "question": "O que está relacionado aos tiques na síndrome de Tourette?",
+        "options": [
+          "a) Disfunção no estriado",
+          "b) Lesão no GPe",
+          "c) Degeneração do STN"
+        ],
+        "answer": "a",
+        "explanation": "Disfunções no estriado, incluindo interneurônios GABAérgicos, contribuem para os tiques."
+      },
+      {
+        "question": "Qual é o alvo da estimulação cerebral profunda em Parkinson?",
+        "options": [
+          "a) STN ou GPi",
+          "b) Núcleo caudado",
+          "c) SNpr"
+        ],
+        "answer": "a",
+        "explanation": "A DBS no STN ou GPi modula circuitos anormais, aliviando sintomas motores."
+      },
+      {
+        "question": "Qual gene está mutado na doença de Huntington?",
+        "options": [
+          "a) PARK2",
+          "b) HTT",
+          "c) LRRK2"
+        ],
+        "answer": "b",
+        "explanation": "A mutação no gene HTT causa a doença de Huntington."
+      },
+      {
+        "question": "Qual sintoma motor caracteriza a doença de Huntington?",
+        "options": [
+          "a) Rigidez",
+          "b) Coreia",
+          "c) Tremor"
+        ],
+        "answer": "b",
+        "explanation": "Coreia, movimentos involuntários, é o principal sintoma motor da doença de Huntington."
+      },
+      {
+        "question": "O que a perda de dopamina na SNpc causa em Parkinson?",
+        "options": [
+          "a) Bradicinesia",
+          "b) Hipercinesia",
+          "c) Perda sensorial"
+        ],
+        "answer": "a",
+        "explanation": "A redução de dopamina leva à subativação da via direta, causando lentidão nos movimentos."
+      },
+      {
+        "question": "Qual técnica é usada para tratar distonia grave?",
+        "options": [
+          "a) Estimulação cerebral profunda",
+          "b) Terapia gênica",
+          "c) Levodopa"
+        ],
+        "answer": "a",
+        "explanation": "A DBS no GPi é eficaz no tratamento da distonia grave."
+      }
+    ]
+  },
+  "Introdução aos Núcleos da Base_1": {
+    "tema": "Introdução aos Núcleos da Base",
+    "level": 1,
+    "questions": [
+      {
+        "question": "O que são os núcleos da base?",
+        "options": [
+          "a) Um tipo de neurônio",
+          "b) Um grupo de núcleos subcorticais",
+          "c) Uma parte da medula espinhal"
+        ],
+        "answer": "b",
+        "explanation": "Os núcleos da base são uma coleção de estruturas subcorticais localizadas na base do prosencéfalo, envolvidas no controle motor e outras funções."
+      },
+      {
+        "question": "Onde estão localizados os núcleos da base?",
+        "options": [
+          "a) No cerebelo",
+          "b) Na base do prosencéfalo",
+          "c) No tronco encefálico"
+        ],
+        "answer": "b",
+        "explanation": "Eles estão localizados profundamente dentro dos hemisférios cerebrais, na base do prosencéfalo."
+      },
+      {
+        "question": "Qual é a função primária dos núcleos da base?",
+        "options": [
+          "a) Processamento sensorial",
+          "b) Controle motor",
+          "c) Armazenamento de memória"
+        ],
+        "answer": "b",
+        "explanation": "Embora tenham várias funções, seu papel principal é na regulação dos movimentos voluntários."
+      },
+      {
+        "question": "Os núcleos da base fazem parte do sistema nervoso central?",
+        "options": [
+          "a) Sim, fazem parte do SNC",
+          "b) Não, fazem parte do SNP",
+          "c) Não fazem parte do sistema nervoso"
+        ],
+        "answer": "a",
+        "explanation": "Os núcleos da base estão no cérebro, sendo, portanto, parte do sistema nervoso central."
+      },
+      {
+        "question": "Os núcleos da base controlam diretamente os movimentos musculares?",
+        "options": [
+          "a) Sim, enviam sinais diretamente aos músculos",
+          "b) Não, modulam a atividade motora indiretamente",
+          "c) Apenas em certas condições"
+        ],
+        "answer": "b",
+        "explanation": "Eles influenciam a atividade motora por meio de conexões com o córtex motor, mas não inervam diretamente os músculos."
+      },
+      {
+        "question": "Além do controle motor, em que outras funções os núcleos da base estão envolvidos?",
+        "options": [
+          "a) Visão e audição",
+          "b) Cognição e emoção",
+          "c) Digestão e respiração"
+        ],
+        "answer": "b",
+        "explanation": "Eles desempenham papéis em processos cognitivos, como aprendizado, e na regulação emocional."
+      },
+      {
+        "question": "Os núcleos da base são uma estrutura única?",
+        "options": [
+          "a) Sim, é um grande núcleo",
+          "b) Não, é um grupo de estruturas interconectadas",
+          "c) Varia entre indivíduos"
+        ],
+        "answer": "b",
+        "explanation": "Os núcleos da base consistem em vários núcleos distintos, mas interconectados."
+      },
+      {
+        "question": "Qual é outro termo às vezes usado para os núcleos da base?",
+        "options": [
+          "a) Gânglios basais",
+          "b) Córtex cerebral",
+          "c) Sistema límbico"
+        ],
+        "answer": "a",
+        "explanation": "O termo 'gânglios basais' é comumente usado, embora 'núcleos da base' seja anatomicamente mais correto."
+      },
+      {
+        "question": "Os núcleos da base desempenham um papel na emoção?",
+        "options": [
+          "a) Sim, por meio de conexões com o sistema límbico",
+          "b) Não, são apenas estruturas motoras",
+          "c) Apenas em condições patológicas"
+        ],
+        "answer": "a",
+        "explanation": "Os núcleos da base, especialmente o estriado ventral, estão envolvidos no processamento de recompensas e emoções."
+      },
+      {
+        "question": "Por que os núcleos da base são importantes para entender distúrbios neurológicos?",
+        "options": [
+          "a) Porque são afetados em muitos distúrbios",
+          "b) Porque causam todas as doenças neurológicas",
+          "c) Porque são fáceis de estudar"
+        ],
+        "answer": "a",
+        "explanation": "Distúrbios como Parkinson e Huntington envolvem disfunções nos núcleos da base, tornando-os cruciais para entender essas condições."
+      }
+    ]
+  },
+  "Introdução aos Núcleos da Base_2": {
+    "tema": "Introdução aos Núcleos da Base",
+    "level": 2,
+    "questions": [
+      {
+        "question": "Quais são as principais estruturas que compõem os núcleos da base?",
+        "options": [
+          "a) Cerebelo, ponte, medula",
+          "b) Estriado, globo pálido, núcleo subtalâmico, substância negra",
+          "c) Hipocampo, amígdala, hipotálamo"
+        ],
+        "answer": "b",
+        "explanation": "Os núcleos da base incluem o estriado (núcleo caudado e putâmen), globo pálido, núcleo subtalâmico e substância negra."
+      },
+      {
+        "question": "Do que é composto o estriado?",
+        "options": [
+          "a) Núcleo caudado e putâmen",
+          "b) Globo pálido e núcleo subtalâmico",
+          "c) Substância negra e área tegmental ventral"
+        ],
+        "answer": "a",
+        "explanation": "O estriado é dividido em núcleo caudado e putâmen."
+      },
+      {
+        "question": "Onde está localizado o globo pálido em relação ao putâmen?",
+        "options": [
+          "a) Lateral ao putâmen",
+          "b) Medial ao putâmen",
+          "c) Superior ao putâmen"
+        ],
+        "answer": "b",
+        "explanation": "O globo pálido está localizado medialmente ao putâmen."
+      },
+      {
+        "question": "Quais são os dois segmentos do globo pálido?",
+        "options": [
+          "a) Interno e externo",
+          "b) Dorsal e ventral",
+          "c) Anterior e posterior"
+        ],
+        "answer": "a",
+        "explanation": "O globo pálido tem um segmento interno (GPi) e um externo (GPe)."
+      },
+      {
+        "question": "O que é o núcleo subtalâmico?",
+        "options": [
+          "a) Uma estrutura envolvida no processamento sensorial",
+          "b) Um pequeno núcleo localizado abaixo do tálamo",
+          "c) Parte do cerebelo"
+        ],
+        "answer": "b",
+        "explanation": "O núcleo subtalâmico é um núcleo pequeno em forma de lente no diencéfalo, abaixo do tálamo."
+      },
+      {
+        "question": "O tálamo faz parte dos núcleos da base?",
+        "options": [
+          "a) Sim",
+          "b) Não",
+          "c) Às vezes"
+        ],
+        "answer": "b",
+        "explanation": "O tálamo está intimamente conectado aos núcleos da base, mas não é considerado parte deles."
+      },
+      {
+        "question": "Qual é a forma do núcleo caudado?",
+        "options": [
+          "a) Esférica",
+          "b) Em forma de C",
+          "c) Plana"
+        ],
+        "answer": "b",
+        "explanation": "O núcleo caudado tem uma estrutura em forma de C que segue o ventrículo lateral."
+      },
+      {
+        "question": "Qual estrutura está lateral ao globo pálido?",
+        "options": [
+          "a) Núcleo caudado",
+          "b) Putâmen",
+          "c) Tálamo"
+        ],
+        "answer": "b",
+        "explanation": "O putâmen está lateral ao globo pálido."
+      },
+      {
+        "question": "No que o estriado ventral está envolvido?",
+        "options": [
+          "a) Controle motor",
+          "b) Recompensa e motivação",
+          "c) Integração sensorial"
+        ],
+        "answer": "b",
+        "explanation": "O estriado ventral, incluindo o núcleo accumbens, está envolvido no processamento de recompensas e motivação."
+      },
+      {
+        "question": "Quais são as principais estruturas de entrada dos núcleos da base?",
+        "options": [
+          "a) Cerebelo e medula espinhal",
+          "b) Córtex cerebral e tálamo",
+          "c) Hipotálamo e amígdala"
+        ],
+        "answer": "b",
+        "explanation": "Os núcleos da base recebem entradas principais do córtex cerebral e enviam saídas para o tálamo."
+      }
+    ]
+  },
+  "Introdução aos Núcleos da Base_3": {
+    "tema": "Introdução aos Núcleos da Base",
+    "level": 3,
+    "questions": [
+      {
+        "question": "Qual é a função primária dos núcleos da base no controle motor?",
+        "options": [
+          "a) Iniciar movimentos",
+          "b) Selecionar e regular movimentos voluntários",
+          "c) Controlar reflexos"
+        ],
+        "answer": "b",
+        "explanation": "Os núcleos da base ajudam a selecionar e modular movimentos voluntários, em vez de iniciá-los diretamente."
+      },
+      {
+        "question": "Como os núcleos da base influenciam o movimento?",
+        "options": [
+          "a) Ativando diretamente os neurônios motores",
+          "b) Por modulação do córtex motor via tálamo",
+          "c) Controlando o tônus muscular"
+        ],
+        "answer": "b",
+        "explanation": "Eles influenciam o movimento indiretamente, modulando a atividade do córtex motor por meio de retransmissões talâmicas."
+      },
+      {
+        "question": "O que é aprendizado procedural, e como os núcleos da base estão envolvidos?",
+        "options": [
+          "a) Aprender fatos; não estão envolvidos",
+          "b) Aprender habilidades motoras e hábitos; muito envolvidos",
+          "c) Aprendizado emocional; minimamente envolvidos"
+        ],
+        "answer": "b",
+        "explanation": "O aprendizado procedural envolve adquirir habilidades motoras e hábitos, e os núcleos da base são cruciais para esse processo."
+      },
+      {
+        "question": "Os núcleos da base estão envolvidos no aprendizado baseado em recompensa?",
+        "options": [
+          "a) Sim, através do estriado ventral",
+          "b) Não, isso é função do hipocampo",
+          "c) Apenas em animais"
+        ],
+        "answer": "a",
+        "explanation": "O estriado ventral, parte dos núcleos da base, é fundamental no processamento de recompensas e aprendizado por reforço."
+      },
+      {
+        "question": "Qual é o papel dos núcleos da base na formação de hábitos?",
+        "options": [
+          "a) Eles evitam a formação de hábitos",
+          "b) Facilitam a automação de comportamentos",
+          "c) Não têm papel nos hábitos"
+        ],
+        "answer": "b",
+        "explanation": "Os núcleos da base ajudam na formação de hábitos reforçando comportamentos repetidos até que se tornem automáticos."
+      },
+      {
+        "question": "O que a via direta nos núcleos da base faz?",
+        "options": [
+          "a) Inibe o movimento",
+          "b) Facilita o movimento",
+          "c) Não afeta o movimento"
+        ],
+        "answer": "b",
+        "explanation": "A via direta desinibe o tálamo, levando à facilitação do movimento."
+      },
+      {
+        "question": "O que a via indireta faz?",
+        "options": [
+          "a) Facilita o movimento",
+          "b) Inibe o movimento",
+          "c) Controla a emoção"
+        ],
+        "answer": "b",
+        "explanation": "A via indireta aumenta a inibição sobre o tálamo, levando à supressão do movimento."
+      },
+      {
+        "question": "Como os núcleos da base interagem com o córtex?",
+        "options": [
+          "a) Enviam projeções diretas ao córtex",
+          "b) Recebem entrada do córtex e enviam saída via tálamo",
+          "c) Não estão conectados ao córtex"
+        ],
+        "answer": "b",
+        "explanation": "Os núcleos da base formam um circuito com o córtex: córtex → núcleos da base → tálamo → córtex."
+      },
+      {
+        "question": "Qual é o papel dos núcleos da base nos movimentos oculares?",
+        "options": [
+          "a) Controlam a dilatação da pupila",
+          "b) Estão envolvidos em movimentos sacádicos",
+          "c) Não têm papel nos movimentos oculares"
+        ],
+        "answer": "b",
+        "explanation": "Os núcleos da base, especialmente o núcleo caudado, estão envolvidos no controle de sacadas voluntárias."
+      },
+      {
+        "question": "Os núcleos da base podem influenciar funções cognitivas?",
+        "options": [
+          "a) Sim, através de conexões com o córtex pré-frontal",
+          "b) Não, são puramente estruturas motoras",
+          "c) Apenas em estados patológicos"
+        ],
+        "answer": "a",
+        "explanation": "Os núcleos da base estão envolvidos em funções cognitivas como planejamento e memória de trabalho por meio de suas conexões com o córtex pré-frontal."
+      }
+    ]
+  },
+  "Introdução aos Núcleos da Base_4": {
+    "tema": "Introdução aos Núcleos da Base",
+    "level": 4,
+    "questions": [
+      {
+        "question": "Pelo que a doença de Parkinson é caracterizada?",
+        "options": [
+          "a) Movimentos hipercinéticos",
+          "b) Perda de neurônios dopaminérgicos na substância negra",
+          "c) Degeneração do cerebelo"
+        ],
+        "answer": "b",
+        "explanation": "A doença de Parkinson é marcada pela morte de neurônios produtores de dopamina na substância negra pars compacta."
+      },
+      {
+        "question": "Quais são os sintomas comuns da doença de Parkinson?",
+        "options": [
+          "a) Tremor, rigidez, bradicinesia",
+          "b) Perda de memória, confusão",
+          "c) Paralisia, perda sensorial"
+        ],
+        "answer": "a",
+        "explanation": "Os sintomas motores clássicos são tremor em repouso, rigidez muscular e lentidão de movimento (bradicinesia)."
+      },
+      {
+        "question": "O que causa a doença de Huntington?",
+        "options": [
+          "a) Infecção viral",
+          "b) Mutação genética no gene HTT",
+          "c) Lesão cerebral traumática"
+        ],
+        "answer": "b",
+        "explanation": "A doença de Huntington é causada por uma mutação no gene huntingtina, levando ao acúmulo de proteínas anormais e morte neuronal."
+      },
+      {
+        "question": "Quais são os principais sintomas da doença de Huntington?",
+        "options": [
+          "a) Coreia, declínio cognitivo, sintomas psiquiátricos",
+          "b) Tremor, rigidez",
+          "c) Perda de coordenação, fala arrastada"
+        ],
+        "answer": "a",
+        "explanation": "Coreia (movimentos involuntários), comprometimento cognitivo e transtornos de humor são sintomas característicos."
+      },
+      {
+        "question": "Qual parte dos núcleos da base é primariamente afetada na doença de Huntington?",
+        "options": [
+          "a) Substância negra",
+          "b) Estriado, particularmente o núcleo caudado",
+          "c) Globo pálido"
+        ],
+        "answer": "b",
+        "explanation": "O estriado, especialmente o núcleo caudado, sofre degeneração significativa na doença de Huntington."
+      },
+      {
+        "question": "O que é distonia?",
+        "options": [
+          "a) Um distúrbio do tônus muscular causando posturas anormais",
+          "b) Um tipo de convulsão",
+          "c) Uma forma de demência"
+        ],
+        "answer": "a",
+        "explanation": "A distonia envolve contrações musculares sustentadas que levam a movimentos de torção e posturas anormais."
+      },
+      {
+        "question": "Como a síndrome de Tourette está relacionada aos núcleos da base?",
+        "options": [
+          "a) Envolve hiperatividade nos circuitos dos núcleos da base",
+          "b) É causada por lesões nos núcleos da base",
+          "c) Não há relação"
+        ],
+        "answer": "a",
+        "explanation": "A síndrome de Tourette está associada à disfunção nos circuitos tálamo-corticais dos núcleos da base, levando a tiques."
+      },
+      {
+        "question": "Qual distúrbio de movimento pode resultar de uma lesão no núcleo subtalâmico?",
+        "options": [
+          "a) Doença de Parkinson",
+          "b) Hemibalismo",
+          "c) Ataxia"
+        ],
+        "answer": "b",
+        "explanation": "Uma lesão no núcleo subtalâmico pode causar hemibalismo, caracterizado por movimentos violentos e descontrolados dos membros."
+      },
+      {
+        "question": "Existem sintomas psiquiátricos associados a distúrbios dos núcleos da base?",
+        "options": [
+          "a) Sim, como depressão e ansiedade na doença de Parkinson",
+          "b) Não, os distúrbios são puramente motores",
+          "c) Apenas em casos raros"
+        ],
+        "answer": "a",
+        "explanation": "Muitos distúrbios dos núcleos da base, como Parkinson e Huntington, têm componentes psiquiátricos, incluindo depressão e ansiedade."
+      },
+      {
+        "question": "Qual é o tratamento para a doença de Parkinson?",
+        "options": [
+          "a) Agonistas de dopamina e levodopa",
+          "b) Medicamentos anticolinérgicos",
+          "c) Cirurgia para remover os núcleos da base"
+        ],
+        "answer": "a",
+        "explanation": "O tratamento principal é aumentar os níveis de dopamina ou imitar sua ação, usando medicamentos como levodopa e agonistas de dopamina."
+      }
+    ]
+  },
+  "Introdução aos Núcleos da Base_5": {
+    "tema": "Introdução aos Núcleos da Base",
+    "level": 5,
+    "questions": [
+      {
+        "question": "Qual neurotransmissor é primariamente liberado pela substância negra pars compacta?",
+        "options": [
+          "a) Serotonina",
+          "b) Dopamina",
+          "c) Acetilcolina"
+        ],
+        "answer": "b",
+        "explanation": "A substância negra pars compacta contém neurônios dopaminérgicos que projetam para o estriado."
+      },
+      {
+        "question": "Quais são os dois principais tipos de receptores de dopamina no estriado?",
+        "options": [
+          "a) D1 e D2",
+          "b) Alfa e beta",
+          "c) Nicotínicos e muscarínicos"
+        ],
+        "answer": "a",
+        "explanation": "Os receptores D1 e D2 são os principais receptores de dopamina, com efeitos diferentes nas vias direta e indireta."
+      },
+      {
+        "question": "Como a dopamina afeta a via direta?",
+        "options": [
+          "a) Inibe-a",
+          "b) Facilita-a via receptores D1",
+          "c) Não tem efeito"
+        ],
+        "answer": "b",
+        "explanation": "A dopamina se liga aos receptores D1 nos neurônios estriatais, ativando a via direta, que facilita o movimento."
+      },
+      {
+        "question": "Como a dopamina afeta a via indireta?",
+        "options": [
+          "a) Facilita-a",
+          "b) Inibe-a via receptores D2",
+          "c) Ativa-a"
+        ],
+        "answer": "b",
+        "explanation": "A dopamina se liga aos receptores D2, que são inibitórios, reduzindo a atividade da via indireta, que normalmente inibe o movimento."
+      },
+      {
+        "question": "Qual neurotransmissor os neurônios espinhosos médios do estriado liberam?",
+        "options": [
+          "a) Glutamato",
+          "b) GABA",
+          "c) Dopamina"
+        ],
+        "answer": "b",
+        "explanation": "Os neurônios espinhosos médios, os principais do estriado, são GABAérgicos e inibitórios."
+      },
+      {
+        "question": "Qual é o papel da acetilcolina nos núcleos da base?",
+        "options": [
+          "a) É o principal neurotransmissor excitatório",
+          "b) Modula a atividade dos neurônios espinhosos médios",
+          "c) Não tem papel"
+        ],
+        "answer": "b",
+        "explanation": "A acetilcolina, liberada por interneurônios, modula a excitabilidade dos neurônios espinhosos médios e influencia o controle motor."
+      },
+      {
+        "question": "Existem receptores de glutamato nos núcleos da base?",
+        "options": [
+          "a) Sim, em neurônios estriatais que recebem entrada cortical",
+          "b) Não, o glutamato não está presente",
+          "c) Apenas nas estruturas de saída"
+        ],
+        "answer": "a",
+        "explanation": "O glutamato é o principal neurotransmissor excitatório do córtex para o estriado, agindo em receptores NMDA e AMPA."
+      },
+      {
+        "question": "Qual é a importância das projeções GABAérgicas do estriado?",
+        "options": [
+          "a) Excitam o globo pálido",
+          "b) Inibem o globo pálido e a substância negra",
+          "c) Não têm significância funcional"
+        ],
+        "answer": "b",
+        "explanation": "O estriado envia projeções GABAérgicas inibitórias para o globo pálido e a substância negra, modulando a saída dos núcleos da base."
+      },
+      {
+        "question": "Como os antipsicóticos afetam os núcleos da base?",
+        "options": [
+          "a) Aumentam os níveis de dopamina",
+          "b) Bloqueiam receptores de dopamina, podendo causar distúrbios de movimento",
+          "c) Aumentam a transmissão GABAérgica"
+        ],
+        "answer": "b",
+        "explanation": "Muitos antipsicóticos são antagonistas dos receptores de dopamina, o que pode levar a efeitos colaterais extrapiramidais devido à alteração da função dos núcleos da base."
+      },
+      {
+        "question": "Qual é o mecanismo de ação da levodopa na doença de Parkinson?",
+        "options": [
+          "a) Bloqueia a degradação da dopamina",
+          "b) É convertida em dopamina no cérebro",
+          "c) Estimula diretamente os receptores de dopamina"
+        ],
+        "answer": "b",
+        "explanation": "A levodopa atravessa a barreira hematoencefálica e é convertida em dopamina, repondo o neurotransmissor deficiente na doença de Parkinson."
+      }
+    ]
+  }
+};
+        
+        // Descrições dos níveis
+        const LEVEL_DESCRIPTIONS = {"Componentes dos Núcleos da Base_1": "Conceitos Fundamentais - Componentes dos Núcleos da Base", "Componentes dos Núcleos da Base_2": "Anatomia Básica - Componentes dos Núcleos da Base", "Componentes dos Núcleos da Base_3": "Funções e Circuitos - Componentes dos Núcleos da Base", "Componentes dos Núcleos da Base_4": "Patologias e Distúrbios - Componentes dos Núcleos da Base", "Componentes dos Núcleos da Base_5": "Neurotransmissores e Moléculas - Componentes dos Núcleos da Base", "Introdução aos Núcleos da Base_1": "Conceitos Fundamentais - Introdução aos Núcleos da Base", "Introdução aos Núcleos da Base_2": "Anatomia Básica - Introdução aos Núcleos da Base", "Introdução aos Núcleos da Base_3": "Funções e Circuitos - Introdução aos Núcleos da Base", "Introdução aos Núcleos da Base_4": "Patologias e Distúrbios - Introdução aos Núcleos da Base", "Introdução aos Núcleos da Base_5": "Neurotransmissores e Moléculas - Introdução aos Núcleos da Base"};
 
-        // Game state
+        // Estado do jogo
+        let currentLevelKey = null;
         let currentQuestion = 0;
         let score = 0;
         let answeredCorrectly = false;
         let explanationViewed = false;
+        let gameProgress = JSON.parse(localStorage.getItem('neuroAdventureProgress') || '{}');
 
-        // DOM elements
+        // Elementos DOM
+        const levelSelectionEl = document.getElementById('levelSelection');
+        const levelGridEl = document.getElementById('levelGrid');
+        const levelInfoEl = document.getElementById('levelInfo');
+        const levelBadgeEl = document.getElementById('levelBadge');
+        const levelTitleEl = document.getElementById('levelTitle');
+        const questionScreenEl = document.getElementById('questionScreen');
         const questionNumberEl = document.getElementById('questionNumber');
         const questionTextEl = document.getElementById('questionText');
         const optionsContainerEl = document.getElementById('optionsContainer');
@@ -495,34 +1612,76 @@
         const nextQuestionBtn = document.getElementById('nextQuestionBtn');
         const scoreValueEl = document.getElementById('scoreValue');
         const progressFillEl = document.getElementById('progressFill');
-        const questionScreenEl = document.getElementById('questionScreen');
         const completionScreenEl = document.getElementById('completionScreen');
         const finalScoreEl = document.getElementById('finalScore');
 
-        // Initialize neural background
-        function createNeuralBackground() {
+        // Inicializar background neural
+        function createNeuralBackground() {{
             const bg = document.getElementById('neuralBg');
-            for (let i = 0; i < 50; i++) {
+            for (let i = 0; i < 50; i++) {{
                 const neuron = document.createElement('div');
                 neuron.className = 'neuron';
                 neuron.style.left = Math.random() * 100 + '%';
                 neuron.style.top = Math.random() * 100 + '%';
                 neuron.style.animationDelay = Math.random() * 6 + 's';
                 bg.appendChild(neuron);
-            }
+            }}
+        }}
+
+        // Gerar grid de níveis
+        function generateLevelGrid() {
+            levelGridEl.innerHTML = '';
+            
+            Object.keys(GAME_DATA).forEach(levelKey => {
+                const levelData = GAME_DATA[levelKey];
+                const isCompleted = gameProgress[levelKey] && gameProgress[levelKey].completed;
+                const questionCount = levelData.questions.length;
+                
+                const levelButton = document.createElement('div');
+                levelButton.className = `level-button ${isCompleted ? 'completed' : ''}`;
+                levelButton.onclick = () => startLevel(levelKey);
+                
+                levelButton.innerHTML = `
+                    <div class="level-title">Nível ${levelData.level}</div>
+                    <div class="level-description">${LEVEL_DESCRIPTIONS[levelKey] || levelData.tema}</div>
+                    <div class="level-stats">${questionCount} questões</div>
+                `;
+                
+                levelGridEl.appendChild(levelButton);
+            });
         }
 
-        // Load current question
+        // Iniciar nível
+        function startLevel(levelKey) {
+            currentLevelKey = levelKey;
+            currentQuestion = 0;
+            score = 0;
+            
+            const levelData = GAME_DATA[levelKey];
+            levelTitleEl.textContent = `Nível ${levelData.level}: ${levelData.tema}`;
+            
+            levelSelectionEl.classList.add('hidden');
+            levelInfoEl.classList.remove('hidden');
+            questionScreenEl.style.display = 'block';
+            completionScreenEl.classList.remove('show');
+            
+            updateScore();
+            loadQuestion();
+        }
+
+        // Carregar questão atual
         function loadQuestion() {
-            const question = gameData[currentQuestion];
-            questionNumberEl.textContent = `Pergunta ${currentQuestion + 1} de ${gameData.length}`;
+            const levelData = GAME_DATA[currentLevelKey];
+            const question = levelData.questions[currentQuestion];
+            
+            questionNumberEl.textContent = `Pergunta ${currentQuestion + 1} de ${levelData.questions.length}`;
             questionTextEl.textContent = question.question;
             explanationTextEl.textContent = question.explanation;
             
-            // Clear previous options
+            // Limpar opções anteriores
             optionsContainerEl.innerHTML = '';
             
-            // Create option buttons
+            // Criar botões de opção
             question.options.forEach((option, index) => {
                 const button = document.createElement('button');
                 button.className = 'option-button';
@@ -531,37 +1690,38 @@
                 optionsContainerEl.appendChild(button);
             });
 
-            // Reset UI state
+            // Resetar estado da UI
             explanationPanelEl.classList.remove('show');
             showExplanationBtn.disabled = false;
             nextQuestionBtn.disabled = true;
             answeredCorrectly = false;
             explanationViewed = false;
 
-            // Update progress
-            const progress = ((currentQuestion) / gameData.length) * 100;
+            // Atualizar progresso
+            const progress = ((currentQuestion) / levelData.questions.length) * 100;
             progressFillEl.style.width = progress + '%';
         }
 
-        // Handle option selection
+        // Selecionar opção
         function selectOption(selectedAnswer, buttonEl) {
-            const question = gameData[currentQuestion];
+            const levelData = GAME_DATA[currentLevelKey];
+            const question = levelData.questions[currentQuestion];
             const allButtons = document.querySelectorAll('.option-button');
             
-            // Disable all buttons
+            // Desabilitar todos os botões
             allButtons.forEach(btn => btn.classList.add('disabled'));
             
-            // Check if answer is correct
+            // Verificar se resposta está correta
             if (selectedAnswer === question.answer) {
                 buttonEl.classList.add('correct');
                 answeredCorrectly = true;
                 if (!explanationViewed) {
-                    score += 10; // Only award points if explanation wasn't viewed
+                    score += 10; // Só dar pontos se explicação não foi visualizada
                     updateScore();
                 }
             } else {
                 buttonEl.classList.add('incorrect');
-                // Highlight correct answer
+                // Destacar resposta correta
                 const correctIndex = question.answer.charCodeAt(0) - 97;
                 allButtons[correctIndex].classList.add('correct');
             }
@@ -570,66 +1730,93 @@
             showExplanationBtn.disabled = true;
         }
 
-        // Show explanation
-        function showExplanation() {
+        // Mostrar explicação
+        function showExplanation() {{
             explanationPanelEl.classList.add('show');
             explanationViewed = true;
             showExplanationBtn.disabled = true;
-        }
+        }}
 
-        // Move to next question
-        function nextQuestion() {
+        // Próxima questão
+        function nextQuestion() {{
             currentQuestion++;
-            if (currentQuestion < gameData.length) {
+            const levelData = GAME_DATA[currentLevelKey];
+            
+            if (currentQuestion < levelData.questions.length) {{
                 loadQuestion();
-            } else {
+            }} else {{
                 showCompletionScreen();
-            }
-        }
+            }}
+        }}
 
-        // Update score display
-        function updateScore() {
+        // Atualizar pontuação
+        function updateScore() {{
             scoreValueEl.textContent = score;
-        }
+        }}
 
-        // Show completion screen
-        function showCompletionScreen() {
+        // Mostrar tela de conclusão
+        function showCompletionScreen() {{
+            const levelData = GAME_DATA[currentLevelKey];
+            const maxScore = levelData.questions.length * 10;
+            const percentage = Math.round((score / maxScore) * 100);
+            
+            // Salvar progresso
+            if (!gameProgress[currentLevelKey]) {
+                gameProgress[currentLevelKey] = {};
+            }
+            gameProgress[currentLevelKey].completed = true;
+            gameProgress[currentLevelKey].bestScore = Math.max(
+                gameProgress[currentLevelKey].bestScore || 0, 
+                score
+            );
+            localStorage.setItem('neuroAdventureProgress', JSON.stringify(gameProgress));
+            
             questionScreenEl.style.display = 'none';
             completionScreenEl.classList.add('show');
-            
-            const maxScore = gameData.length * 10;
-            const percentage = Math.round((score / maxScore) * 100);
             
             finalScoreEl.innerHTML = `
                 <div>Pontuação Final: ${score}/${maxScore} pontos</div>
                 <div>Precisão: ${percentage}%</div>
             `;
             
-            // Update progress to 100%
+            // Atualizar progresso para 100%
             progressFillEl.style.width = '100%';
         }
 
-        // Restart game
-        function restartGame() {
-            currentQuestion = 0;
-            score = 0;
-            answeredCorrectly = false;
-            explanationViewed = false;
-            
-            questionScreenEl.style.display = 'block';
+        // Voltar à seleção de níveis
+        function backToLevelSelection() {
+            levelSelectionEl.classList.remove('hidden');
+            levelInfoEl.classList.add('hidden');
+            questionScreenEl.style.display = 'none';
             completionScreenEl.classList.remove('show');
             
-            updateScore();
-            loadQuestion();
+            // Regenerar grid para mostrar progresso atualizado
+            generateLevelGrid();
+        }
+
+        // Reiniciar nível atual
+        function restartCurrentLevel() {
+            if (currentLevelKey) {
+                startLevel(currentLevelKey);
+            }
+        }
+
+        // Resetar todo o progresso
+        function resetAllProgress() {
+            if (confirm('Tem certeza que deseja resetar todo o seu progresso?')) {
+                localStorage.removeItem('neuroAdventureProgress');
+                gameProgress = {};
+                generateLevelGrid();
+            }
         }
 
         // Event listeners
         showExplanationBtn.addEventListener('click', showExplanation);
         nextQuestionBtn.addEventListener('click', nextQuestion);
 
-        // Initialize game
+        // Inicializar jogo
         createNeuralBackground();
-        loadQuestion();
+        generateLevelGrid();
         updateScore();
     </script>
 </body>
